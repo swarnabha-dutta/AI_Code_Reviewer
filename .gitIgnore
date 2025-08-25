@@ -1,4 +1,4 @@
-# Node modules (backend & future frontend er jonno)
+# Node modules (For backend & future frontend of both)
 node_modules/
 
 # Environment variables
@@ -15,6 +15,6 @@ Thumbs.db
 .vscode/
 .history/
 
-# Build outputs (future frontend er jonno)
+# Build outputs (future frontend )
 dist/
 build/
