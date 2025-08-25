@@ -1,0 +1,20 @@
+# Node modules (backend & future frontend er jonno)
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+.vscode/
+.history/
+
+# Build outputs (future frontend er jonno)
+dist/
+build/
