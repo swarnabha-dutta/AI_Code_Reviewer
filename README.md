@@ -14,8 +14,8 @@
 
 **AI Code Reviewer** is a full-stack web application that leverages Google Gemini AI to provide enterprise-grade, automated code reviews. It features a modern React frontend (built with Vite) and a robust Node.js/Express backend, seamlessly integrated and deployable on Render.
 
-- **Live Frontend:** [ai-code-reviewer-frontend-tlzs.onrender.com](https://ai-code-reviewer-frontend-tlzs.onrender.com)
-- **GitHub Repo:** [swarnabha-dutta/ai-code-reviewer](https://github.com/swarnabha-dutta/ai-code-reviewer)
+- **Live Frontend:** [ai-code-reviewer-frontend-tlzs.onrender.com]()
+- **GitHub Repo:** [swarnabha-dutta/AI_Code_Reviewer](https://github.com/swarnabha-dutta/AI_Code_Reviewer)
 
 ---
 
