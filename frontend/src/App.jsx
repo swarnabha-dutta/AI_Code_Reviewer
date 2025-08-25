@@ -26,7 +26,7 @@ function App() {
     try {
       setIsLoading(true);      // start loading
       setReview("");           // clear old review
-      const response = await axios.post('http://localhost:3000/ai/get-review', { code });
+      const response = await axios.post('https://ai-code-reviewer-backend-5yi3.onrender.com/ai/get-review', { code });
       setReview(response.data); // set new review
     } catch (error) {
       setReview("⚠️ Error fetching review. Please try again.");
