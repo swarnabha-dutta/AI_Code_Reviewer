@@ -8,6 +8,26 @@
 [![Render](https://img.shields.io/badge/Hosting-Render-46E3B7?logo=render)](https://render.com/) 
 [![Open Source](https://img.shields.io/badge/License-ISC-blue)](LICENSE)
 
+
+
+
+
+---
+
+## 📸 Screenshots
+
+> _Add screenshots of your UI here for more engagement!_
+
+**Performance Monitoring**
+
+**Pic 1:**  
+<img width="1208" height="1087" alt="Performance Monitoring Screenshot 1" src="https://github.com/user-attachments/assets/e06ad03b-d9ba-4295-a6cd-4b2011a91511" />
+
+**Pic 2:**  
+<img width="1340" height="891" alt="Performance Monitoring Screenshot 2" src="https://github.com/user-attachments/assets/5907f2c8-c3d6-4620-a83b-40d8c3d4da8f" />
+
+---
+
 ---
 
 ## 🖼️ Project Overview
@@ -150,13 +170,6 @@ ai-code-reviewer/
 
 
 
----
-
-## 📸 Screenshots
-
-> _Add screenshots of your UI here for more engagement!_
-
----
 
 ## 🏷️ License
 
