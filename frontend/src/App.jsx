@@ -18,7 +18,7 @@ function App() {
 `);
   const [review, setReview] = useState(``);
   const [isLoading, setIsLoading] = useState(false); // <-- loading state
-  const Backend_URL = 'https://ai-code-reviewer-backend-5yi3.onrender.com/ai/get-review';
+  const Backend_URL = 'https://ai-code-reviewer-backend-c253.onrender.com/ai/get-review';
 
 
   useEffect(() => {
