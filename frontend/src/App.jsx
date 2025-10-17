@@ -69,6 +69,7 @@ const handleFileChange = (event) => {
       setIsLoading(true);      // start loading
 
       setReview("");           // clear old review
+
       
       const formData = new FormData();
 
@@ -88,7 +89,7 @@ const handleFileChange = (event) => {
       }
       const response = await axios.post(Backend_URL, formData);
 
-
+    
       setReview(response.data); // set new review
       setFilesToUpload([]);
     
