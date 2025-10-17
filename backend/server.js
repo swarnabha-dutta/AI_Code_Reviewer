@@ -5,7 +5,7 @@ const app = require("./src/app.js");
 
 const port = process.env.PORT || 3000; 
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/fileUploadCodeReview";
+const MONGO_URI = process.env.MONGO_URI;
 
 
 if (!MONGO_URI) {
