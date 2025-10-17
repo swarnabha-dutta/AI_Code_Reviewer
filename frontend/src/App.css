@@ -1,6 +1,23 @@
+/* App.css */
+
+/* --- 1. Global Variables & Reset --- */
+:root {
+  /* Colors (Matching GitHub Dark Theme) */
+  --color-bg-primary: #0d1117;
+  --color-bg-secondary: #161b22;
+  --color-text-primary: #ffffff;
+  --color-border: #30363d;
+  --color-accent: #15e7faff; /* Teal/Cyan color for buttons */
+  --color-loading: yellow;
+  --font-code: "Fira code", "Fira Mono", monospace;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --radius-md: 0.7rem;
+}
+
 * {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -11,54 +28,140 @@ body,
   width: 100%;
 }
 
+/* --- 2. Main Layout (Desktop: Split Screen) --- */
 main {
   height: 100%;
   width: 100%;
-  padding: 1.5rem;
+  padding: var(--spacing-lg);
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
 }
 
 main .left,
 main .right {
   height: 100%;
-  flex-basis: 50%;
-  border-radius: 0.7rem;
-}
-
-main .left {
-  background-color: #000000;
+  flex: 1; /* Takes 50% width */
+  border-radius: var(--radius-md);
+  /* Use different backgrounds for visual separation */
+  background-color: var(--color-bg-secondary);
   position: relative;
 }
 
-.left .code,
-.code pre,
-.code pre code {
+/* --- 3. Left Panel (Input Area) --- */
+main .left {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  border-right: 1px solid var(--color-border); /* Separator line on left panel */
+}
+
+/* Textarea Code Editor */
+.code-editor {
+  flex-grow: 1; /* Editor takes up available space */
   height: 100%;
   width: 100%;
-  margin: 0;
-  border-radius: 0.7rem;
-  background-color: #0c0c0c;
 }
 
-main .left .review {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: yellow;
-  color: #000000;
-  padding: 0.5rem 2rem;
-  font-weight: 500;
+.code-editor textarea {
+  /* Resetting properties from inline styles */
+  font-family: var(--font-code);
+  font-size: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  background-color: #1e1e1e; /* Darker background for the editor itself */
+  color: var(--color-text-primary);
+  padding: 10px;
+  resize: none; /* Prevent manual resizing */
+}
+
+/* Controls Bar (Buttons) */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  padding: 0 1rem;
+  height: 3rem;
+}
+
+/* Button Base Style */
+.app-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-accent);
+  color: #000; /* Black text for visibility on cyan */
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  text-align: center;
   cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s;
+  border: none;
   user-select: none;
-  border-radius: 0.7rem;
-  border:#ddd;
+}
+
+.app-button:hover {
+  opacity: 0.9;
+  background-color: #0bd1d8ff; /* Slightly darker on hover */
+}
+
+/* Specific button styles (optional: keep button text white for 'Review' as per original) */
+.review-button {
+  color: var(--color-text-primary); /* Keeping text white for Review button */
+  background-color: #646cff; /* Changing color to blue for distinction */
+}
+
+.upload-label {
+  color: #000; /* Black text for contrast */
 }
 
 
+/* --- 4. Right Panel (Review Output) --- */
 main .right {
-  background-color: #343434;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  overflow: auto;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  font-size: 1.1rem; /* Adjusted for better readability */
+  background-color: var(--color-bg-primary); /* Keeping review panel same as main background */
+}
+
+.loading-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-loading);
+}
+
+/* --- 5. Responsiveness (Mobile Layout) --- */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column; /* Stack vertically on mobile */
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  main .left,
+  main .right {
+    height: auto; /* Allow content to dictate height */
+    min-height: 50vh; /* Minimum height for better content viewing */
+    flex-basis: auto;
+  }
+
+  /* Remove border line from left panel when stacked */
+  main .left {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .controls {
+      /* Ensure controls bar uses full width on mobile */
+      width: 100%;
+      padding: 0;
+  }
 }

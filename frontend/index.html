@@ -2,12 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- আইকনটি পরিবর্তন করা হয়েছে -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>AI Code Reviewer</title>
+    
+    <!-- প্রয়োজনীয় লাইব্রেরিগুলি CDN থেকে লোড করা হচ্ছে -->
+    
+    <!-- 1. AXIOS (ব্যাকএন্ড কমিউনিকেশনের জন্য) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.8/dist/axios.min.js"></script>
+    
+    <!-- 2. PRISMJS (কোড হাইলাইটিং এর জন্য কোর এবং JavaScript কম্পোনেন্ট) -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    
+    <!-- 3. PRISMJS থিম (CSS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css"/>
+    
+    <!-- 4. React-Simple-Code-Editor, React-Markdown, এবং Rehype-Highlight 
+         লাইব্রেরিগুলি React এনভায়রনমেন্ট দ্বারা গ্লোবালি প্রদান করা হবে বলে ধরে নেওয়া হলো। -->
   </head>
   <body>
     <div id="root"></div>
+    <!-- Vite এর মূল JavaScript ফাইল -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
