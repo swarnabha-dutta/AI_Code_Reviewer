@@ -261,7 +261,7 @@ ai-code-reviewer/
 |:--|:--|:--|
 | **Performance** | Lighthouse 88-100/100, LCP 0.6-0.9s | Fast, responsive user experience |
 | **Scalability** | MongoDB + Express REST API | Handles multiple concurrent reviews |
-| **AI Integration** | Google Gemini 1.5 Pro | Advanced code analysis capabilities |
+| **AI Integration** | Google gemini-2.5-flash | Advanced code analysis capabilities |
 | **File Handling** | Multer middleware with validation | Supports batch file uploads |
 | **Error Handling** | Comprehensive try-catch blocks | Robust API with clear error messages |
 
