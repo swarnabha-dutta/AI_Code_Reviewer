@@ -65,7 +65,7 @@
 **AI Code Reviewer** is a full-stack web application that leverages **Google Gemini AI** to provide enterprise-grade automated code reviews.  
 It features a **modern React frontend (Vite)**, a **robust Node.js/Express backend** with **MongoDB** for persistent storage, and **multi-file upload** capabilities for batch code analysis.
 
-- 🌐 **Live Frontend:** [ai-code-reviewer-frontend-tlzs.onrender.com](https://ai-code-reviewer-frontend-tlzs.onrender.com)
+- 🌐 **Live Frontend:** [ai-code-reviewer-frontend-tlzs.onrender.com]([https://ai-code-reviewer-frontend-tlzs.onrender.com](https://ai-code-reviewer-frontend-273n.onrender.com/))
 - 💻 **GitHub Repo:** [swarnabha-dutta/AI_Code_Reviewer](https://github.com/swarnabha-dutta/AI_Code_Reviewer)
 
 ---
@@ -216,20 +216,7 @@ curl -X POST http://localhost:4000/ai/get-review \
 
 ## 🖼️ Folder Structure
 
-### Backend Architecture
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/be419f8d-8896-4831-9733-00b1f416dd13" width="400px" alt="Backend Structure"/>
-</p>
 
-### Frontend Architecture
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/cb345538-3fb2-478e-9869-b7a643d194c7" width="400px" alt="Frontend Structure"/>
-</p>
-
-### Complete Project Structure
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/cf954ef2-bbec-4250-8601-09027ddd2b3d" width="400px" alt="Full Project Structure"/>
-</p>
 
 ```
 ai-code-reviewer/
@@ -276,7 +263,7 @@ ai-code-reviewer/
 |:--|:--|:--|
 | **Performance** | Lighthouse 88-100/100, LCP 0.6-0.9s | Fast, responsive user experience |
 | **Scalability** | MongoDB + Express REST API | Handles multiple concurrent reviews |
-| **AI Integration** | Google Gemini 1.5 Pro | Advanced code analysis capabilities |
+| **AI Integration** | Google gemini-2.5-flash | Advanced code analysis capabilities |
 | **File Handling** | Multer middleware with validation | Supports batch file uploads |
 | **Error Handling** | Comprehensive try-catch blocks | Robust API with clear error messages |
 
