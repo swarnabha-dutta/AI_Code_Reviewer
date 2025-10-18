@@ -281,6 +281,6 @@ This project is licensed under the **ISC License**.
 
 <p align="center">
   <a href="https://github.com/swarnabha-dutta">GitHub</a> •
-  <a href="https://www.linkedin.com/in/swarnabha-dutta">LinkedIn</a> •
+  <a href="[https://www.linkedin.com/in/swarnabha-dutta](https://www.linkedin.com/in/swarnabhadutta909/)">LinkedIn</a> •
   <a href="mailto:swarnabhadutta909@gmail.com">Email</a>
 </p>
