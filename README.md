@@ -216,21 +216,6 @@ curl -X POST http://localhost:4000/ai/get-review \
 
 ## 🖼️ Folder Structure
 
-### Backend Architecture
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/be419f8d-8896-4831-9733-00b1f416dd13" width="400px" alt="Backend Structure"/>
-</p>
-
-### Frontend Architecture
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/cb345538-3fb2-478e-9869-b7a643d194c7" width="400px" alt="Frontend Structure"/>
-</p>
-
-### Complete Project Structure
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/cf954ef2-bbec-4250-8601-09027ddd2b3d" width="400px" alt="Full Project Structure"/>
-</p>
-
 ```
 ai-code-reviewer/
 ├── backend/
