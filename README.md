@@ -21,6 +21,23 @@
 
 <p align="center"><i>Visual proof of real functionality — authentic and production-ready</i></p>
 
+### 🎨 Application Interface
+
+<div align="center">
+  <table>
+    <tr>
+      <td width="50%"><img src="https://github.com/user-attachments/assets/307ab62a-3278-409b-a577-876290f677fd" width="100%" alt="Code Input Interface"/></td>
+      <td width="50%"><img src="https://github.com/user-attachments/assets/0aabc83b-ff30-49af-a0a1-5c9b60b3ee68" width="100%" alt="AI Review Output"/></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Code Input Interface</b><br/>Clean, intuitive code editor with file upload support</td>
+      <td align="center"><b>AI-Generated Review</b><br/>Comprehensive feedback with categorized insights</td>
+    </tr>
+  </table>
+</div>
+
+---
+
 ### 🧠 Performance Monitoring Journey
 
 <p align="center"><i>Baseline vs After Feature Integration — Real metrics from Chrome DevTools & Lighthouse</i></p>
