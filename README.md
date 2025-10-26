@@ -76,7 +76,23 @@
 <p align="center"><i>✅ Metrics verified across multiple Chrome DevTools audits for consistency</i></p>
 
 ---
+## 🗂️ Database Schema
 
+<p align="center"><i>MongoDB collections structure for storing review data</i></p>
+
+<div align="center">
+  <img src="https://github.com/swarnabha-dutta/AI_Code_Reviewer/blob/main/backend/diagrams/ER_Diagram.png?raw=true" width="70%" alt="ER Diagram"/>
+</div>
+
+<p align="center">
+  <b>Entity Relationship Diagram</b><br/>
+  Shows the structure of <code>REVIEWS</code> and <code>METADATA</code> collections
+</p>
+
+**Key Entities:**
+- **REVIEWS Collection**: Stores code review data including language, file names, code snippets, and AI-generated feedback
+- **METADATA Collection**: Tracks document metadata like indexer type, collection name, and average document size
+---
 ## 🖼️ Project Overview
 
 **AI Code Reviewer** is a full-stack web application that leverages **Google Gemini AI** to provide enterprise-grade automated code reviews.  
