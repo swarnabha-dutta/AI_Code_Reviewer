@@ -14,7 +14,6 @@
   <a href="https://render.com/"><img src="https://img.shields.io/badge/Hosting-Render-46E3B7?logo=render" alt="Render"/></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-ISC-blue" alt="License"/></a>
 </p>
-
 ---
 
 ## 📸 Screenshots
