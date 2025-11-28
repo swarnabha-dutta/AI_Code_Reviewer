@@ -287,6 +287,127 @@ ai-code-reviewer/
 
 ---
 
+
+BHAI PERFECT — **আমি তোর দেওয়া README.md-কে একটুও না বদলে**,
+**শুধু Docker + CI/CD section টাকে pure markdown format-এ add করে দিচ্ছি**
+(HTML mix রেখে, তোর style অনুযায়ী)।
+
+👉 **এই section টা এখনই copy-paste করে তোর README.md-তে add করে দে।**
+(সর্বোত্তম জায়গা: "🖼️ Project Overview" এর ঠিক আগে বা পরে)
+
+---
+
+
+## 🐳 Dockerization & 🔄 CI/CD Pipeline (Implemented)
+
+This project is fully **Dockerised** and uses a complete **CI/CD pipeline** on Render.  
+Both **frontend** and **backend** deploy automatically whenever a new commit is pushed to the `main` branch.
+
+### 🚀 Backend – Dockerised Deployment
+The backend runs inside a dedicated Docker container built from a custom Dockerfile.
+
+**✔ Dockerfile Path:**  
+```
+
+backend/Dockerfile
+
+```
+
+**✔ What happens during backend deployment (automatically):**
+1. Render pulls the latest commit from GitHub  
+2. Enters `/backend` directory  
+3. Executes Docker build  
+4. Builds production container  
+5. Pushes to Render internal registry  
+6. Spins up & runs the backend container  
+7. Makes API live instantly  
+
+**Why Docker?**
+- Same environment everywhere  
+- Predictable deployment  
+- No dependency conflicts  
+- Enterprise-ready infra  
+
+---
+
+### 🔁 CI/CD (Continuous Integration & Deployment)
+
+Render automatically manages deployment for both layers:
+- **Frontend:** static site auto-build  
+- **Backend:** Docker rebuild + redeploy  
+
+### ✔ Auto-Deploy enabled  
+Every push to `main` triggers:
+
+```
+
+1. GitHub repo cloned
+2. Frontend build (npm install → npm run build)
+3. Backend Docker image build
+4. Deploy to live URL
+
+```
+
+### ✔ How we confirmed CI/CD
+Render logs display messages like:
+
+```
+
+New commit via Auto-Deploy
+Deploy started for <commit-hash>
+Cloning from GitHub repository...
+Pushing image to registry...
+Your service is live 🎉
+
+```
+
+This proves CI/CD is fully active.
+
+---
+
+### 🌐 Frontend — Static Build CI/CD
+
+- **Service Type:** Static Site  
+- **Root Directory:** `frontend`  
+- **Build Command:**  
+```
+
+npm install && npm run build
+
+```
+- **Publish Directory:**  
+```
+
+dist
+
+```
+- **Auto Deploy:** ON  
+
+---
+
+### 🖥 Backend — Docker CI/CD
+
+- **Service Type:** Web Service  
+- **Root Directory:** `backend`  
+- **Dockerfile Detected Automatically**  
+- **Auto Deploy:** ON  
+- **Trigger:** Any commit in `backend/`  
+
+---
+
+### 🎯 Final Result (Production-Ready DevOps)
+
+- ✔ Fully Dockerised backend  
+- ✔ Static Vite frontend  
+- ✔ Auto CI/CD for both  
+- ✔ Instant deployment on every push  
+- ✔ Commit-based versioning  
+- ✔ Cloud hosting with secure env vars  
+
+This makes the project **enterprise-grade**, stable, scalable, and perfect for showcasing DevOps workflow.
+
+---
+
 ## 🎯 Key Technical Highlights
 
 | Feature | Implementation | Impact |
@@ -306,7 +427,7 @@ This project is licensed under the **ISC License**.
 ---
 
 <p align="center">
-  💙 Built by <a href="https://github.com/swarnabha-dutta">Swarnabha Dutta</a> — with Google Gemini, React & MongoDB
+  💙 Built by <a href="https://github.com/swarnabha-dutta">Swarnabha Dutta</a> 
 </p>
 
 <p align="center">
@@ -314,3 +435,5 @@ This project is licensed under the **ISC License**.
   <a href="https://www.linkedin.com/in/swarnabhadutta909">LinkedIn</a> •
   <a href="mailto:swarnabhadutta909@gmail.com">Email</a>
 </p>
+
+
