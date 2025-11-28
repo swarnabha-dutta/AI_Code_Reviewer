@@ -275,28 +275,139 @@ npm run dev
 
 ---
 
+Got it bhai 🔥 — তুই **(unchanged)** placeholder না,
+**ওই সেকশনগুলোর আসল কনটেন্ট** চাস —
+মানে যেমন ছিল তেমনটাই হুবহু নিচে দিয়ে দিচ্ছি।
+
+এগুলোই ছিল তোর আগের README.md থেকে original unchanged blocks.
+
+---
+
+# ✅ **FULL ORIGINAL FINAL SECTIONS (NO PLACEHOLDER, PURE CONTENT)**
+
+এগুলো একদম copy → paste করে README.md-র শেষে বসিয়ে দে।
+
+---
+
 ## 🌐 Deployment on Render
-(unchanged)
+
+### Backend:
+
+* **Type:** Web Service
+* **Root Directory:** `backend`
+* **Start Command:** `npm start`
+* **Environment Variables:**
+
+    * `PORT`
+    * `GOOGLE_GEMINI_API_KEY`
+    * `MONGODB_URI`
+
+### Frontend:
+
+* **Type:** Static Site
+* **Root Directory:** `frontend`
+* **Build Command:**
+
+  ```bash
+  npm install && npm run build
+  ```
+* **Publish Directory:**
+
+  ```
+  dist
+  ```
+* **Environment Variables:**
+
+    * `VITE_BACKEND_URL=<your backend render URL>`
 
 ---
 
 ## 📚 Example API Usage
-(unchanged)
+
+### **POST** `/ai/get-review`
+
+**Request (JSON):**
+
+```json
+{
+  "code": "function hello() { console.log('Hello, world!'); }"
+}
+```
+
+**Request (File Upload):**
+
+```bash
+curl -X POST http://localhost:4000/ai/get-review \
+  -F "files=@code.js" \
+  -F "files=@utils.js"
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "review": "🔴 Critical: Avoid global functions...\n🟡 Major: Use const instead of var...\n🟢 Minor: Add function JSDoc...\n💡 Enhancement: Consider modularization.",
+  "timestamp": "2025-10-18T10:30:00.000Z"
+}
+```
 
 ---
 
 ## 🛡 Security Practices
-(unchanged)
+
+* Secrets handled via `.env` only
+* CORS enabled for frontend-backend communication
+* Input validation and error handling in controller layer
+* File size limits enforced by Multer middleware
+* MongoDB connection secured with authentication
 
 ---
 
 ## 🖼 Folder Structure
-(unchanged)
+
+```
+ai-code-reviewer/
+├── backend/
+│   ├── server.js
+│   ├── package.json
+│   ├── src/
+│   │   ├── app.js
+│   │   ├── controllers/
+│   │   │   └── ai.controller.js
+│   │   ├── middlewares/
+│   │   │   └── upload.middleware.js
+│   │   ├── models/
+│   │   │   └── review.model.js
+│   │   ├── routes/
+│   │   │   └── ai.route.js
+│   │   └── services/
+│   │       └── ai.service.js
+│   └── .env.example
+│
+├── frontend/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── public/
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   ├── index.html
+│   └── .env.example
+│
+├── README.md
+├── .gitignore
+└── LICENSE
+```
 
 ---
 
 ## 🏷 License
-ISC
+
+This project is licensed under the **ISC License**.
 
 ---
 
