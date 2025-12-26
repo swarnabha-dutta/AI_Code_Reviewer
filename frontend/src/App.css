@@ -1,18 +1,37 @@
 /* App.css */
 
-/* --- 1. Global Variables & Reset --- */
+/* -------------------- 1️⃣ Global Variables & Reset -------------------- */
 :root {
-  /* Colors (Matching GitHub Dark Theme) */
+  /* Default = Dark Theme */
   --color-bg-primary: #0d1117;
   --color-bg-secondary: #161b22;
   --color-text-primary: #ffffff;
   --color-border: #30363d;
-  --color-accent: #15e7faff; /* Teal/Cyan color for buttons */
+  --color-accent: #15e7fa;
   --color-loading: yellow;
   --font-code: "Fira code", "Fira Mono", monospace;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --radius-md: 0.7rem;
+}
+
+/* Light Theme Override */
+[data-theme="light"] {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f4f4f4;
+  --color-text-primary: #000000;
+  --color-border: #bbbbbb;
+  --color-accent: #007bff;
+}
+
+/* Apply Theme Background */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
 * {
@@ -21,14 +40,7 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-  width: 100%;
-}
-
-/* --- 2. Main Layout (Desktop: Split Screen) --- */
+/* -------------------- 2️⃣ Layout (Split Screen) -------------------- */
 main {
   height: 100%;
   width: 100%;
@@ -42,30 +54,27 @@ main {
 main .left,
 main .right {
   height: 100%;
-  flex: 1; /* Takes 50% width */
+  flex: 1;
   border-radius: var(--radius-md);
-  /* Use different backgrounds for visual separation */
   background-color: var(--color-bg-secondary);
   position: relative;
 }
 
-/* --- 3. Left Panel (Input Area) --- */
+/* -------------------- 3️⃣ Left Panel (Editor) -------------------- */
 main .left {
   display: flex;
   flex-direction: column;
   padding: var(--spacing-md);
-  border-right: 1px solid var(--color-border); /* Separator line on left panel */
+  border-right: 1px solid var(--color-border);
 }
 
-/* Textarea Code Editor */
 .code-editor {
-  flex-grow: 1; /* Editor takes up available space */
+  flex-grow: 1;
   height: 100%;
   width: 100%;
 }
 
-.code-editor textarea {
-  /* Resetting properties from inline styles */
+.code-editor {
   font-family: var(--font-code);
   font-size: 16px;
   border: 1px solid var(--color-border);
@@ -75,61 +84,72 @@ main .left {
   overflow-y: auto;
   white-space: pre-wrap;
   line-height: 1.5;
-  background-color: #1e1e1e; /* Darker background for the editor itself */
+  background-color: #1e1e1e;
   color: var(--color-text-primary);
   padding: 10px;
-  resize: none; /* Prevent manual resizing */
+  resize: none;
 }
 
-/* Controls Bar (Buttons) */
+/* Light mode editor override */
+[data-theme="light"] .code-editor {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* -------------------- 4️⃣ Controls (Bottom Button Bar) -------------------- */
 .controls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-top: var(--spacing-md);
   padding: 0 1rem;
   height: 3rem;
 }
 
-/* Button Base Style */
-.app-button {
+/* Buttons Base */
+.app-button,
+.theme-toggle {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-accent);
-  color: #000; /* Black text for visibility on cyan */
   font-weight: bold;
   border-radius: 8px;
   padding: 0.5rem 1rem;
-  text-align: center;
   cursor: pointer;
-  transition: opacity 0.2s, background-color 0.2s;
+  transition: 0.2s;
   border: none;
   user-select: none;
 }
 
-.app-button:hover {
-  opacity: 0.9;
-  background-color: #0bd1d8ff; /* Slightly darker on hover */
-}
-
-/* Specific button styles (optional: keep button text white for 'Review' as per original) */
-.review-button {
-  color: var(--color-text-primary); /* Keeping text white for Review button */
-  background-color: #646cff; /* Changing color to blue for distinction */
-}
-
+/* Upload Button */
 .upload-label {
-  color: #000; /* Black text for contrast */
+  background-color: var(--color-accent);
+  color: black;
 }
 
+.review-button {
+  background-color: #646cff;
+  color: var(--color-text-primary);
+}
 
-/* --- 4. Right Panel (Review Output) --- */
+.theme-toggle {
+  background-color: var(--color-accent);
+}
+
+/* Light Mode Button Override */
+[data-theme="light"] .theme-toggle,
+[data-theme="light"] .upload-label {
+  background-color: #007bff;
+  color: white;
+}
+
+/* -------------------- 5️⃣ Right Panel (AI Output) -------------------- */
 main .right {
   padding: var(--spacing-lg);
+  padding-top: 4rem;
   overflow-y: auto;
-  font-size: 1.1rem; /* Adjusted for better readability */
-  background-color: var(--color-bg-primary); /* Keeping review panel same as main background */
+  font-size: 1.1rem;
+  background-color: var(--color-bg-primary);
 }
 
 .loading-message {
@@ -138,30 +158,93 @@ main .right {
   color: var(--color-loading);
 }
 
-/* --- 5. Responsiveness (Mobile Layout) --- */
+/* Cached Tag */
+.cached-badge {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  background: #0bc267;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Copy Full Output Button */
+.copy-full-container {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 10;
+}
+
+.copy-btn {
+  background-color: var(--color-accent);
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.copy-btn:hover {
+  opacity: 0.8;
+}
+
+[data-theme="light"] .copy-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+/* -------------------- 6️⃣ Toast Notifications -------------------- */
+.toast-error {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  background: #ff3333;
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 9999;
+  cursor: pointer;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* -------------------- 7️⃣ Responsive -------------------- */
 @media (max-width: 768px) {
   main {
-    flex-direction: column; /* Stack vertically on mobile */
-    padding: var(--spacing-md);
-    gap: var(--spacing-md);
+    flex-direction: column;
   }
 
   main .left,
   main .right {
-    height: auto; /* Allow content to dictate height */
-    min-height: 50vh; /* Minimum height for better content viewing */
-    flex-basis: auto;
+    height: auto;
+    min-height: 50vh;
   }
 
-  /* Remove border line from left panel when stacked */
   main .left {
     border-right: none;
     border-bottom: 1px solid var(--color-border);
   }
 
   .controls {
-      /* Ensure controls bar uses full width on mobile */
-      width: 100%;
-      padding: 0;
+    width: 100%;
+    padding: 0;
   }
 }
