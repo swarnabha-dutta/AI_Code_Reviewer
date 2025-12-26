@@ -1,54 +1,100 @@
-const aiService = require("../services/ai.service.js")
+const aiService = require("../services/ai.service.js");
 const Review = require("../models/review.model.js");
+const redis = require("../utils/redis.js");
+const crypto = require("crypto");
 
+function parseMarkdownToJSON(markdown) {
+  try {
+    return {
+      summary: markdown.match(/## Summary([\s\S]*?)(##|$)/)?.[1]?.trim() || "",
+      critical: markdown.match(/## Critical Issues([\s\S]*?)(##|$)/)?.[1]?.trim().split("\n").filter(Boolean) || [],
+      major: markdown.match(/## Major Concerns([\s\S]*?)(##|$)/)?.[1]?.trim().split("\n").filter(Boolean) || [],
+      improvements: markdown.match(/## Improvements([\s\S]*?)(##|$)/)?.[1]?.trim().split("\n").filter(Boolean) || [],
+      positive: markdown.match(/## Positive Highlights([\s\S]*?)(##|$)/)?.[1]?.trim().split("\n").filter(Boolean) || [],
+      nextSteps: markdown.match(/## Next Steps([\s\S]*?)(##|$)/)?.[1]?.trim() || "",
+      rawMarkdown: markdown
+    };
+  } catch {
+    return { rawMarkdown: markdown };
+  }
+}
 
 module.exports.getReview = async (req, res) => {
+  let combinedCode = "";
+  let fileExtension = "manual";
+  let fileList = [];
 
-    let combinedCode = "";
-    let fileExtension = 'manual';
-    let fileList = [];
+  if (req.files && req.files.length > 0) {
+    fileList = req.files.map((file) => file.originalname);
+    fileExtension = `multi:${req.files.length}`;
+    combinedCode = req.files
+      .map(
+        (file) =>
+          `\n\n### File: ${file.originalname} ###\n\n${file.buffer.toString("utf8")}`
+      )
+      .join("\n");
+  } else if (req.body.code) {
+    combinedCode = req.body.code;
+    fileList.push("Manual Input");
+  }
 
-    if (req.files && req.files.length > 0) {
-        fileList = req.files.map(file => file.originalname);
-        fileExtension = 'multi:' + req.files.length;
+  const hashKey = crypto.createHash("sha256").update(combinedCode).digest("hex");
 
+  // Force refresh — clear cache
+  if (req.body.force === "1") {
+    await redis.del(hashKey);
+    console.log("♻️ Force refresh – cache cleared");
+  }
 
-        console.log(`Processing ${req.files.length} files: ${fileList.join(', ')}`);
+  // 1️⃣ Check Redis Cache
+  const cached = await redis.get(hashKey);
+  if (cached) {
+    console.log("⚡ Redis Cache HIT");
+    return res.status(200).json({
+      success: true,
+      cached: true,
+      ...JSON.parse(cached),
+    });
+  }
 
-        combinedCode = req.files.map((file) => {
-            
-            return `\n\n### File: ${file.originalname} ###\n\n` + file.buffer.toString('utf8');
-        }).join('\n');
-    } else if (req.body.code) {
-        
-        fileList.push('Manual Input');
-        combinedCode = req.body.code;
-        fileExtension = 'manual';
-    } else {
-        // Error if no files or code provided
-        return res.status(400).send({ error: "Code or file(s) is required for review." });
+  try {
+    // 2️⃣ AI Call
+    const reviewMarkdown = await aiService(`Perform review: \n${combinedCode}`);
+    if (!reviewMarkdown) {
+      console.log("⚠️ AI returned null");
+      return res.status(429).json({
+        success: false,
+        error: "Gemini quota exceeded — try again after 1 minute",
+        cached: false,
+      });
     }
 
-    try {
-        const prompt = `Perform a comprehensive code review for the following code snippet(s), which include the files: ${fileList.join(', ')}. Focus on best practices, security vulnerabilities, and logic flaws. Provide a detailed summary and then specific feedback for each file/snippet.\n\n${combinedCode}`;
+    const reviewJSON = parseMarkdownToJSON(reviewMarkdown);
 
-        // Assuming aiService handles the call to the Gemini API
-        const reviewText = await aiService(prompt);
+    // 3️⃣ Save in DB
+    const saved = await Review.create({
+      language: fileExtension,
+      fileNames: fileList,
+      codeSnippet: combinedCode.substring(0, 490),
+      reviewContent: reviewMarkdown,
+    });
 
-        // Save review to MongoDB
-        const newReview = new Review({
-            language: fileExtension,
-            fileNames: fileList,
-            codeSnippet: combinedCode.substring(0, 490) + (combinedCode.length > 490 ? '...' : ''),
-            reviewContent: reviewText,
-        });
+    reviewJSON.reviewId = saved._id;
 
-        await newReview.save();
-        console.log(`Review saved to MongoDB.`);
-        res.send(reviewText);
-    } catch (error) {
-        console.error("AI Review or Database Error:", error);
-        
-        res.status(500).send({ error: "Internal Server Error during AI processing or database operation. Check file size limits." });
-    }
-}
+    // 4️⃣ Save Cache – 1 hr
+    await redis.set(hashKey, JSON.stringify(reviewJSON), "EX", 3600);
+    console.log("💾 Mongo + Redis Saved");
+
+    return res.status(200).json({
+      success: true,
+      cached: false,
+      ...reviewJSON,
+    });
+  } catch (error) {
+    console.error("❌ Server Error:", error);
+    return res.status(500).send({
+      success: false,
+      error: "Internal Server Error",
+    });
+  }
+};
