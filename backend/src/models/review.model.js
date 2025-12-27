@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 
-
-
-
 const reviewSchema = new mongoose.Schema({
+    userId: { // 🆕 Track user
+        type: String,
+        required: true,
+        index: true,
+    },
     language: {
         type: String,
         required: true,
@@ -23,14 +25,12 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
     reviewedAt: {
         type: Date,
         default: Date.now,
         index: true,
     }
 });
-
 
 const Review = mongoose.model('Review', reviewSchema);
 
