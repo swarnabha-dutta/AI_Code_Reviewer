@@ -1,22 +1,23 @@
 const express = require("express");
-const aiController = require("../controllers/ai.controller.js");
-const upload = require("../middlewares/upload.middleware.js");
+const aiController = require("../controllers/ai.controller");
+const upload = require("../middlewares/upload.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
-console.log('🔧 AI Routes loaded'); // Debug log
-
-// POST /ai/get-review
-router.post("/get-review", 
-  upload.array("codeFiles", 10), 
-  aiController.getReview
+// AUTH REQUIRED
+router.post(
+    "/get-review",
+    authMiddleware,
+    upload.array("codeFiles", 10),
+    aiController.getReview
 );
 
-
-// 🔧 DEVELOPMENT/TESTING ROUTE - No Auth Required
-router.post("/get-review-test", 
-  upload.array("codeFiles", 10), 
-  aiController.getReviewTest  // Different controller
+// TEST MODE (NO AUTH)
+router.post(
+    "/get-review-test",
+    upload.array("codeFiles", 10),
+    aiController.getReviewTest
 );
 
 module.exports = router;
