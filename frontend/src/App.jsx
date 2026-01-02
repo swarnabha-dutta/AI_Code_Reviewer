@@ -23,7 +23,8 @@ function App() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
     const [copiedFull, setCopiedFull] = useState(false);
 
-    const Backend_URL = "http://localhost:5000/ai/get-review";
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     // ------------------ SYNTAX HIGHLIGHT ------------------
     useEffect(() => {
@@ -106,7 +107,7 @@ function App() {
                 return;
             }
 
-            const response = await axios.post(Backend_URL, formData, {
+            const response = await axios.post(`${Backend_URL}/ai/get-review`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
