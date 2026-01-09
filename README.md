@@ -39,8 +39,8 @@ An end-to-end full-stack application that analyzes source code using **Large Lan
 * **Deployment & CI/CD (Vercel + Render)**
   Automated builds, previews, and zero-downtime production deployments
 
----
 
+-----
 ## 🛠 Tech Stack
 
 ### Frontend
@@ -66,6 +66,16 @@ An end-to-end full-stack application that analyzes source code using **Large Lan
 
 ---
 
+## 🔄 Database Schema 
+
+The diagram below represents the **internal working flow** of the AI Code Reviewer — from user request to AI-powered analysis and optimized response delivery.
+
+<img 
+  src="./diagrams/diagram-export-1-9-2026-2_17_48-PM.png" 
+  alt="AI Code Reviewer Internal Schema Design"
+  width="900"
+/>
+---
 ## ⚡ Frontend Performance Metrics
 
 *Production deployment monitored using **Chrome DevTools & Lighthouse***
@@ -214,3 +224,4 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
