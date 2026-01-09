@@ -143,8 +143,6 @@ no worries 😄 ami **Render অনুযায়ী** একদম clean কর�
 ## 🔁 CI/CD Pipeline (Render)
 <img width="1055" height="853" alt="image" src="https://github.com/user-attachments/assets/95237460-9123-41be-9ed5-20e185a1326d" />
 
-### 📊 Deployment Flow Diagram (Textual Representation)
-
 ---
 
 ### ⚙️ Automated Deployment Flow (Render)
@@ -241,5 +239,6 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
 
 
