@@ -136,26 +136,43 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 > Remaining accessibility and bundle-size suggestions are tracked improvements.
 
 ---
+no worries 😄 ami **Render অনুযায়ী** একদম clean করে দিচ্ছি — **Diagram + README-ready Markdown** দুটোই।
 
-## 🔁 CI/CD Pipeline (Vercel)
+---
 
-<img width="1247" src="https://github.com/user-attachments/assets/4771a14f-f881-4c27-ad66-945f25fdf940" />
+## 🔁 CI/CD Pipeline (Render)
+<img width="1055" height="853" alt="image" src="https://github.com/user-attachments/assets/95237460-9123-41be-9ed5-20e185a1326d" />
 
-### Automated Deployment Flow
+### 📊 Deployment Flow Diagram (Textual Representation)
 
-1. Code pushed to GitHub
-2. Vercel pulls latest commit
-3. Dependencies installed in isolated environment
-4. Frontend build generated
-5. Preview deployment created for PRs
-6. Auto-deploy to production on merge to `main`
+---
 
-### Benefits
+### ⚙️ Automated Deployment Flow (Render)
 
-* Zero-downtime deployments
-* Automatic preview URLs
-* Consistent build environments
-* No manual CI configuration
+1. Code pushed to GitHub repository
+2. Render automatically detects the new commit
+3. Dependencies installed in isolated build environment
+4. Application build executed (`npm install`, `npm run build`, etc.)
+5. Health checks performed on the new deployment
+6. Traffic seamlessly switched to the new version (zero downtime)
+
+---
+
+### ✅ Benefits
+
+* 🚀 Zero-downtime deployments
+* 🔄 Automatic deploy on every push
+* 🧪 Isolated & consistent build environment
+* 🔐 Secure environment variable management
+* 🛠️ No manual CI/CD configuration needed
+
+---
+
+### 📝 Notes (Optional – README polish)
+
+> Render continuously deploys the application directly from GitHub, ensuring fast, reliable, and production-ready releases with minimal configuration.
+
+
 
 ---
 
@@ -224,4 +241,5 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
 
