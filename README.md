@@ -11,7 +11,7 @@ An end-to-end full-stack application that analyzes source code using **Large Lan
 
 ---
 
-## 🔥 Key Highlights (Why this project stands out)
+## 🔥 Key Highlights 
 
 * **LLM-powered automated code review** using Google Gemini
 * Identifies **syntax errors, anti-patterns, performance issues, and optimizations**
@@ -239,6 +239,7 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
 
 
 
