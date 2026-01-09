@@ -61,7 +61,7 @@ An end-to-end full-stack application that analyzes source code using **Large Lan
 
 ### Deployment
 
-* Frontend: Vercel
+* Frontend: Render
 * Backend: Render
 
 ---
@@ -239,6 +239,7 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
 
 
 
