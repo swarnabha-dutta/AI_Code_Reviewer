@@ -166,14 +166,6 @@ no worries 😄 ami **Render অনুযায়ী** একদম clean কর�
 
 ---
 
-### 📝 Notes (Optional – README polish)
-
-> Render continuously deploys the application directly from GitHub, ensuring fast, reliable, and production-ready releases with minimal configuration.
-
-
-
----
-
 ## ▶️ Run Locally
 
 ### Prerequisites
@@ -239,6 +231,7 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
 
 
 
