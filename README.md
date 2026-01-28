@@ -82,7 +82,10 @@ The diagram below represents the **internal working flow** of the AI Code Review
 
 | Initial (Baseline)                                                                                                                         | After Optimization                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img width="420" alt="Initial Lighthouse metrics" src="https://github.com/user-attachments/assets/d7dabb03-4ead-4a6f-9f82-36ff53356e8e" /> | <img width="420" alt="Optimized Lighthouse metrics" src="https://github.com/user-attachments/assets/82a12aea-cb45-48bc-877d-6d78698ada1f" /> |
+| <img 
+  src="./diagrams/Initial_File_SS.png" 
+  alt="AI Code Reviewer Internal Schema Design"
+  width="900"  | <img width="420" alt="Optimized Lighthouse metrics" src="https://github.com/user-attachments/assets/82a12aea-cb45-48bc-877d-6d78698ada1f" /> |
 | **Score:** 82 <br/> **FCP:** ~1.5s <br/> **LCP:** ~2.0s <br/> **TBT:** ~0ms <br/> **Speed Index:** ~2.1s                                   | **Score:** ~98 <br/> **FCP:** ~0.6s <br/> **LCP:** ~1.0s <br/> **TBT:** 0ms <br/> **Speed Index:** ~0.9s                                     |
 
 ### Key Improvements
@@ -231,6 +234,7 @@ npm run dev
 
 **Swarnabha Dutta**
 Full-Stack Developer | MERN | AI Systems
+
 
 
 
