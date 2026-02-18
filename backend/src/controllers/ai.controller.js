@@ -13,7 +13,7 @@ function parseMarkdownToJSON(markdown) {
 // ================= AUTH ROUTE =================
 exports.getReview = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = req.auth?.userId || req.auth?.sub;
 
         let combinedCode = "";
         let fileList = [];
