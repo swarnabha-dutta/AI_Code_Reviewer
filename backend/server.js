@@ -16,3 +16,4 @@ mongoose.connect(process.env.MONGO_URI)
         console.error("MongoDB Error:", err);
         process.exit(1);
     });
+

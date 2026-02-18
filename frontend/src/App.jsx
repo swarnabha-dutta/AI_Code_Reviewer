@@ -14,7 +14,7 @@ function App() {
 
     const [filesToUpload, setFilesToUpload] = useState([]);
     const [code, setCode] = useState(`const sum = () => {
-  return 1 + 1;
+    return 1 + 1;
 }`);
     const [review, setReview] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +23,9 @@ function App() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
     const [copiedFull, setCopiedFull] = useState(false);
 
-    const Backend_URL = import.meta.env.VITE_API_URL;
+    // const Backend_URL = import.meta.env.VITE_API_URL;
+
+    const Backend_URL = `http://localhost:5000`;
 
 
     // ------------------ SYNTAX HIGHLIGHT ------------------
@@ -102,6 +104,7 @@ function App() {
             }
 
             const token = await getToken();
+            console.log("token:", token)
             if (!token) {
                 setError("⚠️ Session expired. Please sign in again.");
                 return;

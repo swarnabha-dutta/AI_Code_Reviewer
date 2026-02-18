@@ -1,15 +1,14 @@
 const express = require("express");
 const aiController = require("../controllers/ai.controller");
 const upload = require("../middlewares/upload.middleware");
-const authMiddleware = require("../middlewares/auth.middleware");
-
+const { requireAuth } = require("@clerk/express");
 const router = express.Router();
 
 // AUTH REQUIRED
 router.post(
     "/get-review",
-    authMiddleware,
-    upload.array("codeFiles", 10),
+    requireAuth(),
+    upload.any(),
     aiController.getReview
 );
 

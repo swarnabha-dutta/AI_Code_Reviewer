@@ -12,7 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "@clerk/backend": "^2.29.0",
-    "@clerk/express": "^1.7.60",
+    "@clerk/express": "^1.7.71",
     "@google/genai": "^1.15.0",
     "@google/generative-ai": "^0.24.1",
     "@upstash/redis": "^1.36.0",

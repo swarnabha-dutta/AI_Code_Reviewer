@@ -23,6 +23,10 @@ app.get("/health", (_, res) => {
     res.json({ status: "ok", time: new Date() });
 });
 
+app.get("/", (_, res) => {
+    res.send("API Running 🚀");
+});
+
 app.use("/ai", aiRoutes);
 
 app.use(errorHandler);
