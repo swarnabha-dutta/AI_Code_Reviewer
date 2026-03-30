@@ -104,7 +104,7 @@ function App() {
             }
 
             const token = await getToken();
-            console.log("token:", token)
+            // console.log("token:", token)
             if (!token) {
                 setError("⚠️ Session expired. Please sign in again.");
                 return;
@@ -161,6 +161,7 @@ function App() {
                         justifyContent: "center",
                         height: "100vh",
                         gap: "20px",
+                        textAlign: "center"
                     }}
                 >
                     <h1>🔐 AI Code Reviewer</h1>
