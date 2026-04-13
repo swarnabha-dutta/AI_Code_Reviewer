@@ -1,13 +1,30 @@
+
+
+
+
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
-    systemInstruction: `
+
+/*
+ fallback order:
+ try best model first
+ then fallback if overloaded
+*/
+const MODELS = [
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash",
+];
+
+// ================= SYSTEM PROMPT =================
+
+const systemInstruction = `
+
 # Enterprise-Grade AI Code Reviewer
 
 ## Role
-You are acting as a **Principal/Staff Software Engineer** and enterprise-grade code reviewer with 10+ years of experience in distributed systems, cloud-native architectures, and enterprise-scale applications.  
+You are acting as a **Principal/Staff Software Engineer** and enterprise-grade code reviewer with 10+ years of experience in distributed systems, cloud-native architectures, and enterprise-scale applications.
 Your responsibility is to enforce **technical excellence, security, scalability, and maintainability** while balancing business impact.
 
 ---
@@ -117,17 +134,105 @@ Your responsibility is to enforce **technical excellence, security, scalability,
 Deliver **actionable, concise, business-aware feedback** that improves technical quality, reduces risk, and accelerates delivery while enabling team learning and growth.
 `
 
-});
+
+
+// ================= UTIL =================
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+// ================= SINGLE MODEL CALL =================
+
+async function callModel(modelName, prompt) {
+
+    const model = genAI.getGenerativeModel({
+        model: modelName,
+        systemInstruction
+    });
+
+    const result = await model.generateContent(prompt);
+
+    return result.response.text();
+}
+
+
+
+// ================= MAIN GENERATE FUNCTION =================
 
 async function generateContent(prompt) {
-    try {
-        const result = await model.generateContent(prompt);
-        console.log(result.response.text());
-        return result.response.text();
-    } catch (error) {
-        console.error("Error generating content:", error);
-        return null;
+
+    let lastError;
+
+    for (const modelName of MODELS) {
+
+        for (let attempt = 1; attempt <= 3; attempt++) {
+
+            try {
+
+                console.log(`🤖 ${modelName} attempt ${attempt}`);
+
+                const text = await callModel(modelName, prompt);
+
+                if (!text || text.trim().length === 0) {
+
+                    throw new Error("Empty AI response");
+
+                }
+
+                return text;
+
+            } catch (err) {
+
+                lastError = err;
+
+                console.log(`❌ ${modelName} failed`, err.status, err.message);
+
+                // retry only if overloaded
+                if (err.status === 503 || err.statusText === 'Service Unavailable' || err?.message?.includes('503')) {
+
+                    const delay = 15000 * attempt;
+
+                    console.log(`⏳ waiting ${delay / 1000}s`);
+
+                    await sleep(delay);
+
+                } else {
+
+                    break;
+
+                }
+
+            }
+
+        }
+
     }
+
+    console.error("AI completely failed:", lastError);
+
+
+    // fallback response so DB never fails
+
+    return `
+## AI Service Busy ⚠️
+
+The AI reviewer is currently overloaded.
+
+Please try again after a few seconds.
+
+This is temporary and usually resolves quickly.
+
+### Suggestions
+- retry in 30 seconds
+- try smaller code snippet
+- try again later
+
+Your code was received successfully.
+`;
+
 }
+
 
 module.exports = generateContent;

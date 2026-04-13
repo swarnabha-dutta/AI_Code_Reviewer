@@ -23,9 +23,9 @@ function App() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
     const [copiedFull, setCopiedFull] = useState(false);
 
-    const Backend_URL = import.meta.env.VITE_API_URL;
+    // const Backend_URL = import.meta.env.VITE_API_URL;
 
-    // const Backend_URL = `http://localhost:5000`;
+    const Backend_URL = `http://localhost:5000`;
 
 
     // ------------------ SYNTAX HIGHLIGHT ------------------
@@ -77,71 +77,202 @@ function App() {
     };
 
     // ------------------ REVIEW CALL ------------------
+    // async function reviewCode() {
+    //     if (!isLoaded || !userId) {
+    //         setError("⚠️ Please sign in to review code.");
+    //         return;
+    //     }
+
+    //     try {
+    //         setIsLoading(true);
+    //         setReview("");
+    //         setError("");
+
+    //         const formData = new FormData();
+
+    //         if (filesToUpload.length === 0 && code.trim() === "") {
+    //             setError("⚠️ Please upload a file or write code first.");
+    //             return;
+    //         }
+
+    //         if (filesToUpload.length > 0) {
+    //             filesToUpload.forEach((file) =>
+    //                 formData.append("codeFiles", file)
+    //             );
+    //         } else {
+    //             formData.append("code", code);
+    //         }
+
+    //         const token = await getToken();
+    //         // console.log("token:", token)
+    //         if (!token) {
+    //             setError("⚠️ Session expired. Please sign in again.");
+    //             return;
+    //         }
+
+    //         const response = await axios.post(`${Backend_URL}/ai/get-review`, formData, {
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         });
+
+    //         // ✅ FINAL FIX (backend sends `raw`)
+    //         setReview(
+    //             response.data.raw ||
+    //             response.data.rawMarkdown ||
+    //             response.data.reviewContent ||
+    //             ""
+    //         );
+
+    //         setIsCached(response.data.cached === true);
+    //         setFilesToUpload([]);
+
+    //     } catch (err) {
+    //         const msg =
+    //             err.response?.data?.detail ||
+    //             err.response?.data?.error ||
+    //             err.message;
+
+    //         if (msg?.toLowerCase().includes("expired")) {
+    //             setError("⚠️ Session expired. Please sign in again.");
+    //         } else {
+    //             setError(msg);
+    //         }
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // }
+
+
+
+
     async function reviewCode() {
-        if (!isLoaded || !userId) {
-            setError("⚠️ Please sign in to review code.");
+
+    if (!isLoaded || !userId) {
+
+        setError("⚠️ Please sign in first");
+
+        return;
+
+    }
+
+    try {
+
+        setIsLoading(true);
+
+        setError("");
+
+        setReview("");
+
+
+
+        if (filesToUpload.length === 0 && code.trim() === "") {
+
+            setError("⚠️ write or upload code");
+
             return;
+
         }
 
-        try {
-            setIsLoading(true);
-            setReview("");
-            setError("");
 
-            const formData = new FormData();
 
-            if (filesToUpload.length === 0 && code.trim() === "") {
-                setError("⚠️ Please upload a file or write code first.");
-                return;
-            }
+        const formData = new FormData();
 
-            if (filesToUpload.length > 0) {
-                filesToUpload.forEach((file) =>
-                    formData.append("codeFiles", file)
-                );
-            } else {
-                formData.append("code", code);
-            }
 
-            const token = await getToken();
-            // console.log("token:", token)
-            if (!token) {
-                setError("⚠️ Session expired. Please sign in again.");
-                return;
-            }
 
-            const response = await axios.post(`${Backend_URL}/ai/get-review`, formData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+        // file upload
+
+        if (filesToUpload.length > 0) {
+
+            filesToUpload.forEach(file => {
+
+                formData.append("codeFiles", file);
+
             });
 
-            // ✅ FINAL FIX (backend sends `raw`)
-            setReview(
-                response.data.raw ||
-                response.data.rawMarkdown ||
-                response.data.reviewContent ||
-                ""
-            );
-
-            setIsCached(response.data.cached === true);
-            setFilesToUpload([]);
-
-        } catch (err) {
-            const msg =
-                err.response?.data?.detail ||
-                err.response?.data?.error ||
-                err.message;
-
-            if (msg?.toLowerCase().includes("expired")) {
-                setError("⚠️ Session expired. Please sign in again.");
-            } else {
-                setError(msg);
-            }
-        } finally {
-            setIsLoading(false);
         }
+
+
+
+        // text input
+
+        else {
+
+            formData.append("code", code.trim());
+
+        }
+
+
+
+        const token = await getToken();
+
+
+
+        const response = await axios.post(
+
+            `${Backend_URL}/ai/get-review`,
+
+            formData,
+
+            {
+
+                headers: {
+
+                    Authorization: `Bearer ${token}`,
+
+                    "Content-Type": "multipart/form-data"
+
+                }
+
+            }
+
+        );
+
+
+
+        setReview(
+
+            response.data.raw || ""
+
+        );
+
+
+
+        setIsCached(response.data.cached === true);
+
+        setFilesToUpload([]);
+
     }
+
+    catch (err) {
+
+        console.log("frontend error", err);
+
+
+
+        const msg =
+
+            err?.response?.data?.error ||
+
+            err?.response?.data?.message ||
+
+            err.message ||
+
+            "Server error";
+
+
+
+        setError(msg);
+
+    }
+
+    finally {
+
+        setIsLoading(false);
+
+    }
+
+}
 
     return (
         <>
