@@ -23,9 +23,9 @@ function App() {
     const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
     const [copiedFull, setCopiedFull] = useState(false);
 
-    // const Backend_URL = import.meta.env.VITE_API_URL;
+    const Backend_URL = import.meta.env.VITE_API_URL;
 
-    const Backend_URL = `http://localhost:5000`;
+    // const Backend_URL = `http://localhost:5000`;
 
 
     // ------------------ SYNTAX HIGHLIGHT ------------------
