@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const aiRoutes = require("./routes/ai.routes");
 const errorHandler = require("./middlewares/errorHandler");
+const { stats } = require("./controllers/ai.controller");
 
 const app = express();
 
@@ -22,9 +23,27 @@ app.get("/health", (_, res) => {
 app.get("/", (_, res) => {
     res.send("API Running 🚀");
 });
+app.get("/stats",(req,res)=>{
+    const hitRate  = stats.totalRequests 
+                     ? ((stats.cacheHits/stats.totalRequests) * 100).toFixed(1) 
+                     : 0;
+
+    res.json({
+        totalRequests:stats.totalRequests,
+        cacheHits:stats.cacheHits,
+        cacheMisses:stats.cacheMisses,
+        cacheHitRate: hitRate +  "%",
+        apiCallReduction: hitRate + "%",
+        dbLoadReduction:hitRate + "%"
+    });                 
+});
+
 
 app.use("/ai", aiRoutes);
-
 app.use(errorHandler);
+
+
+
+
 
 module.exports = app;

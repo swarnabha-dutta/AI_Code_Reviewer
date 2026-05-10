@@ -1,3 +1,10 @@
+const stats={
+    totalRequests:0,
+    cacheHits:0,
+    cacheMisses:0,
+};
+
+
 const aiService = require("../services/ai.service");
 const Review = require("../models/review.model");
 const redis = require("../utils/redis");
@@ -20,7 +27,7 @@ function parseMarkdownToJSON(markdown) {
 
 // ================= AUTH ROUTE =================
 
-exports.getReview = async (req, res) => {
+const getReview = async (req, res) => {
 
     try {
 
@@ -98,10 +105,14 @@ exports.getReview = async (req, res) => {
 
         const cached = await redis.get(hashKey);
 
+        // Stats update and calculate for Total Requests
+        stats.totalRequests++;
+
 
 
         if (cached) {
-
+            // Stats update and calculate for Cache Hits
+            stats.cacheHits++;
             console.log("cache hit");
 
             return res.json({
@@ -115,6 +126,8 @@ exports.getReview = async (req, res) => {
             });
 
         }
+        // Stats update and calculate for Cache Misses
+        stats.cacheMisses++;
 
 
 
@@ -216,7 +229,7 @@ exports.getReview = async (req, res) => {
 // ================= TEST ROUTE =================
 
 
-exports.getReviewTest = async (req, res) => {
+const getReviewTest = async (req, res) => {
 
     try {
 
@@ -250,12 +263,13 @@ exports.getReviewTest = async (req, res) => {
 
         const cached = await redis.get(hashKey);
 
-
+        stats.totalRequests++;
 
         if (cached) {
 
             console.log("⚡ Redis Cache HIT (TEST)");
-
+            // Stats update and calculate for Cache Hits
+            stats.cacheHits++;
 
             return res.json({
 
@@ -270,6 +284,8 @@ exports.getReviewTest = async (req, res) => {
             });
 
         }
+        // Stats update and calculate for Cache Misses
+        stats.cacheMisses++;
 
 
 
@@ -345,3 +361,9 @@ exports.getReviewTest = async (req, res) => {
     }
 
 };
+
+module.exports={
+    getReview,
+    getReviewTest,
+    stats,
+}
