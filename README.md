@@ -103,15 +103,22 @@ The diagram below represents the **internal working flow** of the AI Code Review
 * Initial uncached latency: ~19s
 * Cached response latency: ~1.3s
 * Per-user rate limiting enforced (10 requests/hour)
+* **~79% reduction in redundant Gemini API calls** via Redis cache hit detection
+* **~79% reduction in MongoDB queries** for repeated code submissions
+* Verified across **14 live requests** — 11 cache hits, 3 misses (**78.6% cache hit rate**)
 
-<details>
-<summary><strong>📸 Backend Performance & API Validation Evidence</strong></summary>
+### 📊 Cache Performance Stats (Live Verification)
 
-<br/>
+| Metric | Value |
+|---|---|
+| Total Requests | 14 |
+| Cache Hits | 11 |
+| Cache Misses | 3 |
+| Cache Hit Rate | 78.6% |
+| Gemini API Call Reduction | ~79% |
+| MongoDB Query Reduction | ~79% |
 
-
-
-</details>
+<img width="1681" height="1030" alt="Cache Stats Proof" src="https://github.com/user-attachments/assets/8d9926eb-07f1-4848-984c-117188b53d5b" />
 
 ### API Response — Without Cache
 
