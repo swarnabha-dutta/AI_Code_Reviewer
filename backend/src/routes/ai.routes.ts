@@ -1,16 +1,19 @@
-const express = require("express");
-const aiController = require("../controllers/ai.controller");
-const upload = require("../middlewares/upload.middleware");
-const authMiddleware = require("../middlewares/auth.middleware");
+import express from "express";
+import aiController from "../controllers/ai.controller";
+import upload from "../middlewares/upload.middleware";
+import authMiddleware from "../middlewares/auth.middleware";
+
 const router = express.Router();
+
 
 // AUTH REQUIRED
 router.post(
     "/get-review",
-    authMiddleware, 
+    authMiddleware,
     upload.any(),
     aiController.getReview
 );
+
 
 // TEST MODE (NO AUTH)
 router.post(
@@ -19,4 +22,5 @@ router.post(
     aiController.getReviewTest
 );
 
-module.exports = router;
+
+export default router;
