@@ -71,7 +71,7 @@ An end-to-end full-stack application that analyzes source code using **Large Lan
 The diagram below represents the **internal working flow** of the AI Code Reviewer — from user request to AI-powered analysis and optimized response delivery.
 
 <img 
-  src="./diagrams/diagram-export-1-9-2026-2_17_48-PM.png" 
+  src="./diagrams/diagram-export-26-5-2026-11_48_43-am.png" 
   alt="AI Code Reviewer Internal Schema Design"
   width="900"
 />
