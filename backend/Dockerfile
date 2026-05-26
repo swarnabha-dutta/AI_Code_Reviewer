@@ -1,6 +1,5 @@
 # Use Node LTS
-FROM node:20-alpine
-
+FROM node:20-alpine3.20
 
 # Set working directory
 WORKDIR /app
@@ -8,14 +7,17 @@ WORKDIR /app
 # Copy package files
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+# Update base packages and install dependencies
+RUN apk upgrade --no-cache && npm install
 
 # Copy the rest of the backend code
 COPY . .
 
-# Expose backend port
-EXPOSE 3030
+# Build TypeScript
+RUN npm run build
 
-# Start server
-CMD ["node", "server.js"]
+# Expose backend port
+EXPOSE 5000
+
+# Start compiled server
+CMD ["node", "dist/server.js"]
