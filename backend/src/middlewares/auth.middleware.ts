@@ -21,7 +21,7 @@ const authMiddleware = async (
         const token = header.replace("Bearer ", "");
         const payload = await verifyToken(token, {
             secretKey: process.env.CLERK_SECRET_KEY ?? "",
-            audience: process.env.CLERK_PUBLISHABLE_KEY  ?? "",
+            audience: "https://ai-code-reviewer-frontend-feb.onrender.com", 
         });
 
         (req as any).auth = { userId: payload.sub };
