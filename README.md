@@ -99,26 +99,27 @@ The diagram below represents the **internal working flow** of the AI Code Review
 
 ## ⚡ Backend Performance Optimization
 
-* **~93% reduction in API response time** using Redis caching
-* Initial uncached latency: ~19s
-* Cached response latency: ~1.3s
-* Per-user rate limiting enforced (10 requests/hour)
-* **~79% reduction in redundant Gemini API calls** via Redis cache hit detection
-* **~79% reduction in MongoDB queries** for repeated code submissions
-* Verified across **14 live requests** — 11 cache hits, 3 misses (**78.6% cache hit rate**)
+* ~93% reduction in API response time using Redis caching (9.01s → 493ms)
+* Initial uncached latency: 9.01s
+* Cached response latency: 493ms
+* **82.4% reduction in redundant Gemini API calls** via Redis cache hit detection
+* **82.4% reduction in MongoDB queries** for repeated code submissions
+* Verified across **14 live requests** — 14 cache hits, 3 misses (**82.4% cache hit rate**)
 
 ### 📊 Cache Performance Stats (Live Verification)
 
 | Metric | Value |
 |---|---|
-| Total Requests | 14 |
-| Cache Hits | 11 |
+| Total Requests | 17 |
+| Cache Hits | 14 |
 | Cache Misses | 3 |
-| Cache Hit Rate | 78.6% |
-| Gemini API Call Reduction | ~79% |
-| MongoDB Query Reduction | ~79% |
+| Cache Hit Rate | 82.4% |
+| Gemini API Call Reduction | 82.4% |
+| MongoDB Query Reduction | 82.4% |
 
-<img width="1681" height="1030" alt="Cache Stats Proof" src="https://github.com/user-attachments/assets/8d9926eb-07f1-4848-984c-117188b53d5b" />
+### 📊 Cost Optimistaion and Database Loading Reduction Calculation Stats
+<img width="1642" height="1017" alt="image" src="https://github.com/user-attachments/assets/c2633860-10b5-480c-8cc9-f5db65e242f2" />
+
 
 ### API Response — Without Cache
 
@@ -144,9 +145,6 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 
 > Metrics may vary slightly due to Lighthouse simulation.
 > Remaining accessibility and bundle-size suggestions are tracked improvements.
-
----
-no worries 😄 ami **Render অনুযায়ী** একদম clean করে দিচ্ছি — **Diagram + README-ready Markdown** দুটোই।
 
 ---
 
