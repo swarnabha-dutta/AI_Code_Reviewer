@@ -150,23 +150,51 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 ----
 ## 🧪 Testing
 
-This project includes unit tests built with:
+This project includes production-ready unit tests built with:
 
-- Vitest
-- React Testing Library
-- Jest DOM
-- User Event
+- ⚡ Vitest
+- ⚛️ React Testing Library
+- ✅ Jest DOM
+- 👆 User Event
+- 🎭 Component & Hook Mocking
 
 ### Components Tested
 
 - ✅ CodeEditor (5 tests)
 - ✅ ReviewPanel (10 tests)
+- ✅ SignedInView (11 tests)
 
-**Current Status**
+### Current Status
 
-- 15/15 Tests Passing
+- ✅ 26/26 Tests Passing
 
-Screenshots : <img width="818" height="463" alt="image" src="https://github.com/user-attachments/assets/b7397587-eac5-40c2-ad36-385b61868f8a" />
+### Testing Coverage
+
+The test suite covers:
+
+- Component Rendering
+- Props Validation
+- User Interaction
+- Custom Hook Mocking
+- Child Component Mocking
+- Conditional Rendering
+- Loading States
+- Cached State Handling
+- Error Handling
+- Callback Verification
+
+### Run Tests
+
+----
+
+npm run test
+
+
+Screenshots : 
+<br/>
+<img width="623" height="415" alt="image" src="https://github.com/user-attachments/assets/2bd86a29-b0b9-44f6-a259-ecf3a04bf29e" />
+
+
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
