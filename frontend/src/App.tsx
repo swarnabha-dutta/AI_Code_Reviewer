@@ -1,4 +1,3 @@
-import React from 'react';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import SignedInView from './pages/SignedInView';
 import SignedOutView from './pages/SignedOutView';

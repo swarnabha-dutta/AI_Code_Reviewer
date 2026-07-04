@@ -65,9 +65,7 @@ export function useReview() {
                 setError("⚠️ write or upload code");
                 return;
             }
-
             const formData = new FormData();
-
             if (state.filesToUpload.length > 0) {
                 state.filesToUpload.forEach(file => formData.append("codeFiles", file));
             } else {
