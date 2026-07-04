@@ -147,7 +147,28 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 > Remaining accessibility and bundle-size suggestions are tracked improvements.
 
 ---
+----
+## 🧪 Testing
 
+This project includes unit tests built with:
+
+- Vitest
+- React Testing Library
+- Jest DOM
+- User Event
+
+### Components Tested
+
+- ✅ CodeEditor (5 tests)
+- ✅ ReviewPanel (10 tests)
+
+**Current Status**
+
+- 15/15 Tests Passing
+
+Screenshots : <img width="818" height="463" alt="image" src="https://github.com/user-attachments/assets/b7397587-eac5-40c2-ad36-385b61868f8a" />
+
+----
 ## 🔁 CI/CD Pipeline (Render)
 <img width="1055" height="853" alt="image" src="https://github.com/user-attachments/assets/95237460-9123-41be-9ed5-20e185a1326d" />
 
