@@ -148,20 +148,23 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 
 ---
 ----
-## 🧪 Testing Progress
+# 🧪 Testing Progress
 
-The frontend is tested using **Vitest**, **React Testing Library**, and **Mock Service Worker (MSW)** with production-oriented testing practices.
+The frontend is tested using **Vitest**, **React Testing Library (RTL)**, and **Mock Service Worker (MSW)** following production-oriented testing practices.
 
-### ✅ Completed Test Suites
+## ✅ Completed Test Suites
 
 - App component
 - CodeEditor component
 - ReviewPanel component
+- ReviewFetcher component
 - SignedInView component
 - SignedOutView component
-- MSW API Integration
+- useReview Hook Integration (MSW)
 
-### 🧠 Testing Concepts Covered
+---
+
+## 🧠 Testing Concepts Covered
 
 - Component rendering
 - User interactions
@@ -170,35 +173,101 @@ The frontend is tested using **Vitest**, **React Testing Library**, and **Mock S
 - Third-party library mocking (Clerk)
 - Prop verification
 - Accessibility queries
+- Custom Hook Testing
+- React Hook Integration Testing
 - Loading state testing
+- Error state testing
+- Cached response testing
 - API mocking with Mock Service Worker (MSW)
-- Integration testing
 - Network request interception
+- Asynchronous testing (`act`, `waitFor`)
 - Mock server lifecycle management
 
-### 📊 Current Test Status
+---
 
-```bash
-Test Files  6 passed (6)
-Tests       33 passed (33)
+## 📊 Current Test Status
+
+```text
+Test Files 7 passed (7)
+Tests      37 passed (37)
 ```
 
-### ▶️ Run Tests
+### Test Breakdown
+
+| Test Suite | Tests |
+|------------|------:|
+| App | 1 |
+| CodeEditor | 5 |
+| ReviewPanel | 10 |
+| ReviewFetcher | 1 |
+| SignedInView | 11 |
+| SignedOutView | 5 |
+| useReview Integration (MSW) | 4 |
+| **Total** | **37** |
+
+---
+
+## 🚀 Integration Scenarios Covered
+
+### ✅ Successful API Response
+
+- Reviews code successfully using MSW
+- Updates review state correctly
+
+### ✅ Loading State
+
+- Simulates network latency using `delay()`
+- Verifies loading state before response completes
+
+### ✅ Error Handling
+
+- Simulates HTTP 500 responses
+- Verifies error state updates correctly
+
+### ✅ Cached Response
+
+- Simulates cached API responses
+- Verifies cache indicator updates correctly
+
+---
+
+## ▶️ Run Tests
 
 ```bash
 npm run test
 ```
 
-### 📈 Run Coverage
+## 📈 Run Coverage
 
 ```bash
 npm run test:coverage
 ```
 
+---
+
+### 🛠 Testing Stack
+
+- Vitest
+- React Testing Library
+- Mock Service Worker (MSW)
+- @testing-library/user-event
+- jest-dom
+- jsdom
+
+---
+
+### 📌 Current Progress
+
+- ✅ Lessons 1–8 Completed
+- ✅ 37 Automated Unit & Integration Tests
+- ✅ MSW API Integration
+- ✅ Custom Hook Integration Testing
+- 🔄 Next: Component Integration Testing (Lesson 9)
+  -----------------------
+
 Screenshots : 
 <br/>
-<img width="617" height="713" alt="image" src="https://github.com/user-attachments/assets/d1de9337-3c10-4964-9925-077d73337d9c" />
-
+<img width="892" height="600" alt="image" src="https://github.com/user-attachments/assets/f8db4606-f676-4dae-9e67-340f6cc476fe" />
 
 
 
