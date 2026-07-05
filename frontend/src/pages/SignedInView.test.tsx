@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import SignedInView from "./SignedInView";
+import userEvent from "@testing-library/user-event";
 
 const mockSetCode = vi.fn();
 const mockSetError = vi.fn();
@@ -170,3 +171,4 @@ describe("SignedInView", () => {
         expect(panel).toHaveTextContent("false");
     });
 });
+
