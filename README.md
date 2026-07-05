@@ -150,7 +150,7 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 ----
 ## 🧪 Testing Progress
 
-The frontend is tested using **Vitest** and **React Testing Library** with production-oriented testing practices.
+The frontend is tested using **Vitest**, **React Testing Library**, and **Mock Service Worker (MSW)** with production-oriented testing practices.
 
 ### ✅ Completed Test Suites
 
@@ -159,8 +159,9 @@ The frontend is tested using **Vitest** and **React Testing Library** with produ
 - ReviewPanel component
 - SignedInView component
 - SignedOutView component
+- MSW API Integration
 
-### Testing Concepts Covered
+### 🧠 Testing Concepts Covered
 
 - Component rendering
 - User interactions
@@ -170,14 +171,33 @@ The frontend is tested using **Vitest** and **React Testing Library** with produ
 - Prop verification
 - Accessibility queries
 - Loading state testing
-----
+- API mocking with Mock Service Worker (MSW)
+- Integration testing
+- Network request interception
+- Mock server lifecycle management
 
+### 📊 Current Test Status
+
+```bash
+Test Files  6 passed (6)
+Tests       33 passed (33)
+```
+
+### ▶️ Run Tests
+
+```bash
 npm run test
+```
 
+### 📈 Run Coverage
+
+```bash
+npm run test:coverage
+```
 
 Screenshots : 
 <br/>
-<img width="638" height="1130" alt="image" src="https://github.com/user-attachments/assets/80a2bdc6-81d7-458e-9d73-e97bc3c7d5b1" />
+<img width="617" height="713" alt="image" src="https://github.com/user-attachments/assets/d1de9337-3c10-4964-9925-077d73337d9c" />
 
 
 
