@@ -78,15 +78,52 @@ The diagram below represents the **internal working flow** of the AI Code Review
 ---
 ## ⚡ Frontend Performance Metrics
 
-*Production deployment monitored using **Chrome DevTools & Lighthouse***
+<table>
+<tr>
+<th>Initial (Baseline)</th>
+<th>After Optimization</th>
+</tr>
 
-| Initial (Baseline)                                                                                                                         | After Optimization                                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img 
-  src="./diagrams/Initial_File_SS.png" 
-  alt="AI Code Reviewer Internal Schema Design"
-  width="900"  | <img width="420" alt="Optimized Lighthouse metrics" src="https://github.com/user-attachments/assets/82a12aea-cb45-48bc-877d-6d78698ada1f" /> |
-| **Score:** 82 <br/> **FCP:** ~1.5s <br/> **LCP:** ~2.0s <br/> **TBT:** ~0ms <br/> **Speed Index:** ~2.1s                                   | **Score:** ~98 <br/> **FCP:** ~0.6s <br/> **LCP:** ~1.0s <br/> **TBT:** 0ms <br/> **Speed Index:** ~0.9s                                     |
+<tr>
+<td align="center">
+<img src="./diagrams/Initial_File_SS.png" alt="Initial Lighthouse Report" width="420">
+</td>
+
+<td align="center">
+<img src="https://github.com/user-attachments/assets/82a12aea-cb45-48bc-877d-6d78698ada1f" alt="Optimized Lighthouse Report" width="420">
+</td>
+</tr>
+
+<tr>
+<td>
+
+**Score:** 82
+
+**FCP:** ~1.5s
+
+**LCP:** ~2.0s
+
+**TBT:** ~0ms
+
+**Speed Index:** ~2.1s
+
+</td>
+
+<td>
+
+**Score:** ~98
+
+**FCP:** ~0.6s
+
+**LCP:** ~1.0s
+
+**TBT:** 0ms
+
+**Speed Index:** ~0.9s
+
+</td>
+</tr>
+</table>                                     
 
 ### Key Improvements
 
@@ -160,6 +197,8 @@ The frontend is tested using **Vitest**, **React Testing Library (RTL)**, and **
 - ReviewFetcher component
 - SignedInView component
 - SignedOutView component
+- SignedInView Integration
+- App Integration
 - useReview Hook Integration (MSW)
 
 ---
@@ -170,40 +209,51 @@ The frontend is tested using **Vitest**, **React Testing Library (RTL)**, and **
 - User interactions
 - Conditional rendering
 - Component mocking
+- Parent-child integration testing
 - Third-party library mocking (Clerk)
+- Authentication flow testing
 - Prop verification
 - Accessibility queries
 - Custom Hook Testing
 - React Hook Integration Testing
+- Full Component Integration Testing
+- App Root Integration Testing
 - Loading state testing
 - Error state testing
 - Cached response testing
+- Validation testing
+- FormData request verification
+- Authorization header testing
+- Multiple request handling
 - API mocking with Mock Service Worker (MSW)
 - Network request interception
-- Asynchronous testing (`act`, `waitFor`)
+- Asynchronous testing (`act`, `waitFor`, `findBy`)
 - Mock server lifecycle management
+- Smoke testing
+- Re-render testing
 
 ---
 
 ## 📊 Current Test Status
 
 ```text
-Test Files 7 passed (7)
-Tests      37 passed (37)
+Test Files 8 passed (8)
+Tests      52 passed (52)
 ```
 
 ### Test Breakdown
 
 | Test Suite | Tests |
 |------------|------:|
-| App | 1 |
+| App | 5 |
 | CodeEditor | 5 |
 | ReviewPanel | 10 |
 | ReviewFetcher | 1 |
-| SignedInView | 11 |
+| SignedInView | 13 |
 | SignedOutView | 5 |
 | useReview Integration (MSW) | 4 |
-| **Total** | **37** |
+| SignedInView Integration | 9 |
+| **Total** | **52** |
 
 ---
 
@@ -211,23 +261,48 @@ Tests      37 passed (37)
 
 ### ✅ Successful API Response
 
-- Reviews code successfully using MSW
+- Reviews code successfully
 - Updates review state correctly
+- Displays review content
 
 ### ✅ Loading State
 
-- Simulates network latency using `delay()`
-- Verifies loading state before response completes
+- Simulates network latency
+- Verifies loading indicator before response completes
 
 ### ✅ Error Handling
 
 - Simulates HTTP 500 responses
-- Verifies error state updates correctly
+- Displays server error messages
+- Supports dismissing error notifications
 
 ### ✅ Cached Response
 
 - Simulates cached API responses
-- Verifies cache indicator updates correctly
+- Verifies cached badge rendering
+- Ensures fresh responses don't display cache indicators
+
+### ✅ Authentication Flow
+
+- Tests SignedIn rendering
+- Tests SignedOut rendering
+- Verifies Clerk authentication wrappers
+- Ensures only one authenticated view is rendered
+
+### ✅ Request Validation
+
+- Prevents empty code submissions
+- Sends FormData payload
+- Verifies Authorization header
+- Verifies multipart/form-data requests
+
+### ✅ App Integration
+
+- Root component integration testing
+- Parent-child component interaction
+- Conditional rendering
+- Re-render verification
+- Smoke testing
 
 ---
 
@@ -262,12 +337,12 @@ npm run test:coverage
 - ✅ 37 Automated Unit & Integration Tests
 - ✅ MSW API Integration
 - ✅ Custom Hook Integration Testing
-- 🔄 Next: Component Integration Testing (Lesson 9)
+- 🔄 Next: Component Integration Testing (Lesson 11)
   -----------------------
 
 Screenshots : 
 <br/>
-<img width="892" height="600" alt="image" src="https://github.com/user-attachments/assets/f8db4606-f676-4dae-9e67-340f6cc476fe" />
+<img width="1110" height="683" alt="image" src="https://github.com/user-attachments/assets/6e6592c3-a759-46f0-b86d-bdd257f2fda1" />
 
 
 
