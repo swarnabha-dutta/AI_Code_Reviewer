@@ -209,11 +209,12 @@ Built with **Vitest**, **React Testing Library**, and **MSW**.
 - NavBar
 - ReviewPanel
 - ReviewFetcher
+- ReviewContainer Integration (Real Hook + MSW)
 - SignedInView
 - SignedOutView
 - SignedInView Integration
-- useReview Integration (MSW)
 - useReview Unit
+- useReview Integration (MSW)
 - reviewApi Service
 - useTheme Hook
 
@@ -222,33 +223,67 @@ Built with **Vitest**, **React Testing Library**, and **MSW**.
 ## 📊 Test Status
 
 ```text
-Test Files 13 passed (13)
-Tests      89 passed (89)
+Test Files : 14 passed (14)
+Tests      : 93 passed (93)
 ```
+
+---
+
+## 📈 Test Coverage
+
+| Metric | Coverage |
+|--------|----------:|
+| Statements | **78.07%** |
+| Branches | **81.25%** |
+| Functions | **71.11%** |
+| Lines | **81.44%** |
 
 ---
 
 ## 🧠 Covered
 
-- Component Testing
-- Unit Testing
-- Integration Testing
-- Hook Testing
-- API Service Testing
-- MSW Mocking
+- ✅ Component Testing
+- ✅ Unit Testing
+- ✅ Integration Testing
+- ✅ React Hook Testing
+- ✅ API Service Testing
+- ✅ Real Hook + MSW Integration Testing
+- ✅ API Integration Testing
+- ✅ Loading State Testing
+- ✅ Error Handling Testing
+- ✅ User Interaction Testing
+- ✅ Authentication Mocking (Clerk)
+- ✅ MSW Network Mocking
 
 ---
 
-## ▶️ Run
+## 🛠 Tech Stack
+
+- Vitest
+- React Testing Library
+- @testing-library/user-event
+- jest-dom
+- MSW (Mock Service Worker)
+
+---
+
+## ▶️ Run Tests
 
 ```bash
 npm test
 ```
 
+### Watch Mode
+
+```bash
+npm run test:watch
+```
+
+### Coverage
+
 ```bash
 npm run test:coverage
 ```
-
 ---
 
 ## ✅ Progress
@@ -256,7 +291,7 @@ npm run test:coverage
 - **89 Automated Tests**
 - Component + Unit + Integration + Hook + API TestingScreenshots : 
 <br/>
-<img width="1097" height="1063" alt="image" src="https://github.com/user-attachments/assets/d5f051d7-8cc1-4cf9-8d1b-fc498a580531" />
+<img width="1417" height="1103" alt="image" src="https://github.com/user-attachments/assets/4e794339-2534-4f4a-81ea-308710549d51" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
