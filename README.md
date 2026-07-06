@@ -228,12 +228,12 @@ Built with **Vitest**, **React Testing Library**, and **MSW**.
 
 ```text
 Test Files : 17 passed (17)
-Tests      : 119 passed (119)
+Tests      : 130 passed (130)
 ```
 
 ---
 
-## 📈 Test Coverage
+# 📈 Test Coverage
 
 | Metric | Coverage |
 |---------|---------:|
@@ -257,6 +257,22 @@ Tests      : 119 passed (119)
 - SignedInView
 - SignedOutView
 - App
+
+---
+
+## ✅ Accessibility Testing (WCAG)
+
+- Semantic HTML Validation
+- Navigation Landmark Testing
+- Form Label Accessibility
+- Accessible Name Verification
+- ARIA Region Testing
+- ARIA Status Announcements
+- aria-live Validation
+- aria-busy Validation
+- Automated Accessibility Audits
+- jest-axe Integration
+- WCAG Accessibility Verification
 
 ---
 
@@ -343,6 +359,7 @@ Tests      : 119 passed (119)
 - User Interaction
 - Authentication Mocking (Clerk)
 - MSW Network Mocking
+- Accessibility Validation
 
 ---
 
@@ -353,6 +370,8 @@ Tests      : 119 passed (119)
 - @testing-library/user-event
 - @testing-library/jest-dom
 - Mock Service Worker (MSW)
+- jest-axe
+- axe-core
 
 ---
 
@@ -378,9 +397,10 @@ npm run test:coverage
 
 # 📈 Current Progress
 
-- ✅ **119 Automated Tests**
+- ✅ **130 Automated Tests**
 - ✅ **17 Test Files**
 - ✅ Component Testing
+- ✅ Accessibility Testing
 - ✅ Unit Testing
 - ✅ Hook Testing
 - ✅ Integration Testing
@@ -391,9 +411,10 @@ npm run test:coverage
 - ✅ Advanced Mocking
 - ✅ Production Edge Case Testing
 - ✅ Custom Hook Testing
+- ✅ WCAG Accessibility Validation
+- ✅ Automated Accessibility Audits
 
 ---
-
 # 📸 Test Results
 
 Screenshots
@@ -401,7 +422,7 @@ Screenshots
 - Test Suite (119 Passing Tests)
 - Coverage Report
 <br/>
-<img width="892" height="917" alt="Screenshot 2026-07-06 190815" src="https://github.com/user-attachments/assets/63ea2299-9e6f-45dd-a7d2-ceb1b419fdc5" />
+<img width="857" height="923" alt="image" src="https://github.com/user-attachments/assets/19228c88-6f5e-4ba4-963b-2ac13e662298" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
