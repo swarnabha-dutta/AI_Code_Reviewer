@@ -199,7 +199,7 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 ----
 # 🧪 Testing Progress
 
-Frontend testing is built with **Vitest**, **React Testing Library**, and **MSW**.
+Built with **Vitest**, **React Testing Library**, and **MSW**.
 
 ## ✅ Test Suites
 
@@ -223,7 +223,7 @@ Frontend testing is built with **Vitest**, **React Testing Library**, and **MSW*
 
 ```text
 Test Files 13 passed (13)
-Tests      83 passed (83)
+Tests      89 passed (89)
 ```
 
 ---
@@ -233,22 +233,17 @@ Tests      83 passed (83)
 - Component Testing
 - Unit Testing
 - Integration Testing
-- Custom Hook Testing
+- Hook Testing
 - API Service Testing
-- MSW API Mocking
-- Authentication Testing
-- File Upload Testing
-- Async Testing
+- MSW Mocking
 
 ---
 
-## ▶️ Run Tests
+## ▶️ Run
 
 ```bash
 npm test
 ```
-
-## 📈 Coverage
 
 ```bash
 npm run test:coverage
@@ -256,14 +251,12 @@ npm run test:coverage
 
 ---
 
-### ✅ Progress
+## ✅ Progress
 
-- **Lessons 1–14 Completed**
-- **83 Automated Tests**
-- Component + Unit + Integration + Hook + API Testing
-Screenshots : 
+- **89 Automated Tests**
+- Component + Unit + Integration + Hook + API TestingScreenshots : 
 <br/>
-<img width="866" height="876" alt="Screenshot 2026-07-06 075412" src="https://github.com/user-attachments/assets/d09a66b6-2620-4b61-88e5-09dbcb8563f6" />
+<img width="1207" height="1018" alt="image" src="https://github.com/user-attachments/assets/4f2a4903-48af-4c04-bfa0-d90e640e728b" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
