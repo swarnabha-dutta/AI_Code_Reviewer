@@ -199,9 +199,9 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 ----
 # 🧪 Testing Progress
 
-Frontend testing is built with **Vitest**, **React Testing Library (RTL)**, and **Mock Service Worker (MSW)**.
+Frontend testing is built with **Vitest**, **React Testing Library**, and **MSW**.
 
-## ✅ Completed Test Suites
+## ✅ Test Suites
 
 - App
 - CodeEditor
@@ -212,48 +212,30 @@ Frontend testing is built with **Vitest**, **React Testing Library (RTL)**, and 
 - SignedInView
 - SignedOutView
 - SignedInView Integration
-- useReview Hook Integration (MSW)
+- useReview Integration (MSW)
+- useTheme Hook
 
 ---
 
-## 🧠 Concepts Covered
+## 📊 Test Status
+
+```text
+Test Files 11 passed (11)
+Tests      73 passed (73)
+```
+
+---
+
+## 🧠 Covered
 
 - Component Testing
 - Integration Testing
 - Custom Hook Testing
-- API Mocking (MSW)
-- Component Mocking
+- MSW API Mocking
 - Authentication Testing
 - User Interaction Testing
-- Loading & Error States
-- Accessibility Testing
 - File Upload Testing
 - Async Testing
-
----
-
-## 📊 Current Test Status
-
-```text
-Test Files 10 passed (10)
-Tests      67 passed (67)
-```
-
-### Test Breakdown
-
-| Test Suite | Tests |
-|------------|------:|
-| App | 5 |
-| CodeEditor | 5 |
-| FileUpload | 10 |
-| NavBar | 5 |
-| ReviewPanel | 10 |
-| ReviewFetcher | 1 |
-| SignedInView | 13 |
-| SignedOutView | 5 |
-| useReview Integration | 4 |
-| SignedInView Integration | 9 |
-| **Total** | **67** |
 
 ---
 
@@ -271,28 +253,17 @@ npm run test:coverage
 
 ---
 
-### 🛠 Testing Stack
+### ✅ Progress
 
-- Vitest
-- React Testing Library
-- Mock Service Worker (MSW)
-- @testing-library/user-event
-- jest-dom
-
----
-
-### 📌 Current Progress
-
-- ✅ Lessons 1–12 Completed
-- ✅ 67 Automated Unit & Integration Tests
-- ✅ Component & Integration Testing
-- ✅ MSW API Mocking
-- 🔄 Next: `useTheme` Hook Testing (Lesson 13)
-  -----------------------
+- Lessons **1–13 Completed**
+- **73 Automated Tests**
+- Unit + Integration + Hook Testing
+---------
 
 Screenshots : 
 <br/>
-<img width="1050" height="811" alt="image" src="https://github.com/user-attachments/assets/8ac71e0a-b3c4-4cd2-a242-124e9b46fff1" />
+
+<img width="991" height="976" alt="image" src="https://github.com/user-attachments/assets/09a55a90-4283-4ee2-9267-2705aced8c3a" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
