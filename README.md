@@ -201,6 +201,8 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 
 Built with **Vitest**, **React Testing Library**, and **MSW**.
 
+# 🧪 Testing
+
 ## ✅ Test Suites
 
 - App
@@ -240,37 +242,78 @@ Tests      : 104 passed (104)
 
 ---
 
-## 🧠 Covered
+## 🧠 Testing Coverage
 
-- ✅ Component Testing
-- ✅ Unit Testing
-- ✅ Integration Testing
-- ✅ React Hook Testing
-- ✅ API Service Testing
-- ✅ Real Hook + MSW Integration Testing
-- ✅ Advanced MSW Request Assertions
-- ✅ Request Header Assertions
-- ✅ FormData Assertions
-- ✅ Request Body Verification
-- ✅ API Integration Testing
-- ✅ Loading State Testing
-- ✅ Delayed Response Testing
-- ✅ Network Error Testing
-- ✅ HTTP Status Testing (200, 201, 400, 401, 403, 404, 429)
-- ✅ Cached Response Testing
-- ✅ Error Handling Testing
-- ✅ User Interaction Testing
-- ✅ Authentication Mocking (Clerk)
-- ✅ MSW Network Mocking
+### ✅ Component Testing
+- CodeEditor
+- FileUpload
+- NavBar
+- ReviewPanel
+- ReviewFetcher
+- SignedInView
+- SignedOutView
+- App
+
+### ✅ React Hook Testing
+- useReview (Unit)
+- useReview (Real Hook + MSW)
+- useTheme
+
+### ✅ API & Integration Testing
+- reviewApi Service
+- ReviewContainer (Real Hook + MSW)
+- SignedInView Integration
+
+### ✅ Advanced MSW Testing
+- Request Header Assertions
+- FormData Assertions
+- Request Body Verification
+- Query Parameter Assertions
+- Authorization Header Verification
+- Multipart FormData Validation
+- Real API Integration Flow
+- Delayed Response Simulation
+- Network Error Simulation
+- Cached Response Testing
+
+### ✅ HTTP Response Testing
+- 200 OK
+- 201 Created
+- 400 Bad Request
+- 401 Unauthorized
+- 403 Forbidden
+- 404 Not Found
+- 429 Too Many Requests
+
+### ✅ Advanced Mocking (Vitest)
+- vi.spyOn()
+- mockResolvedValue()
+- mockResolvedValueOnce()
+- mockRejectedValueOnce()
+- mockImplementationOnce()
+- Sequential Mock Responses
+- clearAllMocks()
+- resetAllMocks()
+- restoreAllMocks()
+- toHaveBeenNthCalledWith()
+- toHaveBeenLastCalledWith()
+
+### ✅ User Experience Testing
+- Loading State
+- Error Handling
+- Cached Response
+- User Interaction
+- Authentication Mocking (Clerk)
+- MSW Network Mocking
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Testing Stack
 
 - Vitest
 - React Testing Library
 - @testing-library/user-event
-- jest-dom
+- @testing-library/jest-dom
 - MSW (Mock Service Worker)
 
 ---
@@ -297,7 +340,7 @@ npm run test:coverage
 - **89 Automated Tests**
 - Component + Unit + Integration + Hook + API TestingScreenshots : 
 <br/>
-<img width="1097" height="921" alt="Screenshot 2026-07-06 150327" src="https://github.com/user-attachments/assets/614235ba-fbbb-4727-80e8-b3c40d4d1344" />
+<img width="1302" height="1007" alt="image" src="https://github.com/user-attachments/assets/18cf661f-efdd-42de-8d04-75fcf7b5f3ce" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
