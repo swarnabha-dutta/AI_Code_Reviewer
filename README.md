@@ -213,6 +213,8 @@ Frontend testing is built with **Vitest**, **React Testing Library**, and **MSW*
 - SignedOutView
 - SignedInView Integration
 - useReview Integration (MSW)
+- useReview Unit
+- reviewApi Service
 - useTheme Hook
 
 ---
@@ -220,8 +222,8 @@ Frontend testing is built with **Vitest**, **React Testing Library**, and **MSW*
 ## 📊 Test Status
 
 ```text
-Test Files 11 passed (11)
-Tests      73 passed (73)
+Test Files 13 passed (13)
+Tests      83 passed (83)
 ```
 
 ---
@@ -229,11 +231,12 @@ Tests      73 passed (73)
 ## 🧠 Covered
 
 - Component Testing
+- Unit Testing
 - Integration Testing
 - Custom Hook Testing
+- API Service Testing
 - MSW API Mocking
 - Authentication Testing
-- User Interaction Testing
 - File Upload Testing
 - Async Testing
 
@@ -242,7 +245,7 @@ Tests      73 passed (73)
 ## ▶️ Run Tests
 
 ```bash
-npm run test
+npm test
 ```
 
 ## 📈 Coverage
@@ -255,15 +258,12 @@ npm run test:coverage
 
 ### ✅ Progress
 
-- Lessons **1–13 Completed**
-- **73 Automated Tests**
-- Unit + Integration + Hook Testing
----------
-
+- **Lessons 1–14 Completed**
+- **83 Automated Tests**
+- Component + Unit + Integration + Hook + API Testing
 Screenshots : 
 <br/>
-
-<img width="991" height="976" alt="image" src="https://github.com/user-attachments/assets/09a55a90-4283-4ee2-9267-2705aced8c3a" />
+<img width="866" height="876" alt="Screenshot 2026-07-06 075412" src="https://github.com/user-attachments/assets/d09a66b6-2620-4b61-88e5-09dbcb8563f6" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
