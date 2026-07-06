@@ -1,18 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { http, HttpResponse } from "msw";
+
+import { server } from "../mocks/server";
 import ReviewContainer from "./ReviewContainer";
-
-const mockReviewCode = vi.fn();
-
-const mockUseReview = {
-    code: "console.log('Hello');",
-    setCode: vi.fn(),
-    review: "",
-    isLoading: false,
-    error: "",
-    reviewCode: mockReviewCode,
-};
 
 vi.mock("@clerk/clerk-react", () => ({
     useAuth: () => ({
@@ -22,21 +14,8 @@ vi.mock("@clerk/clerk-react", () => ({
     }),
 }));
 
-vi.mock("../hooks/useReview", () => ({
-    useReview: () => mockUseReview,
-}));
-
-describe("ReviewContainer", () => {
-    beforeEach(() => {
-        vi.clearAllMocks();
-
-        mockUseReview.code = "console.log('Hello');";
-        mockUseReview.review = "";
-        mockUseReview.isLoading = false;
-        mockUseReview.error = "";
-    });
-
-    it("renders textarea and button", () => {
+describe("ReviewContainer - Real Hook + MSW Integration", () => {
+    it("renders textarea and review button", () => {
         render(<ReviewContainer />);
 
         expect(screen.getByLabelText("code-editor")).toBeInTheDocument();
@@ -48,7 +27,7 @@ describe("ReviewContainer", () => {
         ).toBeInTheDocument();
     });
 
-    it("calls reviewCode when Review Code button is clicked", async () => {
+    it("shows review returned from MSW", async () => {
         const user = userEvent.setup();
 
         render(<ReviewContainer />);
@@ -59,34 +38,79 @@ describe("ReviewContainer", () => {
             })
         );
 
-        expect(mockReviewCode).toHaveBeenCalledTimes(1);
+        expect(
+            await screen.findByText(/MSW Mock Review/i)
+        ).toBeInTheDocument();
     });
 
-    it("shows loading button text", () => {
-        mockUseReview.isLoading = true;
+    it("disables button while reviewing", async () => {
+        const user = userEvent.setup();
+
+        server.use(
+            http.post(
+                `${import.meta.env.VITE_API_URL}/ai/get-review`,
+                async () => {
+                    await new Promise((resolve) => setTimeout(resolve, 300));
+
+                    return HttpResponse.json({
+                        raw: "Delayed Review",
+                        cached: false,
+                    });
+                }
+            )
+        );
 
         render(<ReviewContainer />);
+
+        const button = screen.getByRole("button", {
+            name: /review code/i,
+        });
+
+        await user.click(button);
+
+        expect(button).toBeDisabled();
+
+        expect(button).toHaveTextContent(/reviewing/i);
 
         expect(
-            screen.getByRole("button")
-        ).toHaveTextContent("Reviewing...");
+            await screen.findByText(/Delayed Review/i)
+        ).toBeInTheDocument();
+
+        await waitFor(() => {
+            expect(button).not.toBeDisabled();
+            expect(button).toHaveTextContent(/review code/i);
+        });
     });
 
-    it("shows error message", () => {
-        mockUseReview.error = "Something went wrong";
+    it("shows server error", async () => {
+        const user = userEvent.setup();
 
-        render(<ReviewContainer />);
-
-        expect(screen.getByRole("alert")).toHaveTextContent(
-            "Something went wrong"
+        server.use(
+            http.post(
+                `${import.meta.env.VITE_API_URL}/ai/get-review`,
+                () => {
+                    return HttpResponse.json(
+                        {
+                            error: "Internal Server Error",
+                        },
+                        {
+                            status: 500,
+                        }
+                    );
+                }
+            )
         );
-    });
-
-    it("renders review panel when review exists", () => {
-        mockUseReview.review = "# AI Review";
 
         render(<ReviewContainer />);
 
-        expect(screen.getByText(/AI Review/i)).toBeInTheDocument();
+        await user.click(
+            screen.getByRole("button", {
+                name: /review code/i,
+            })
+        );
+
+        expect(
+            await screen.findByRole("alert")
+        ).toHaveTextContent("Internal Server Error");
     });
 });
