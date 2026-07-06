@@ -194,12 +194,12 @@ Frontend testing is built with **Vitest**, **React Testing Library (RTL)**, and 
 - App
 - CodeEditor
 - FileUpload
+- NavBar
 - ReviewPanel
 - ReviewFetcher
 - SignedInView
 - SignedOutView
 - SignedInView Integration
-- App Integration
 - useReview Hook Integration (MSW)
 
 ---
@@ -216,7 +216,6 @@ Frontend testing is built with **Vitest**, **React Testing Library (RTL)**, and 
 - Loading & Error States
 - Accessibility Testing
 - File Upload Testing
-- FormData Validation
 - Async Testing
 
 ---
@@ -224,8 +223,8 @@ Frontend testing is built with **Vitest**, **React Testing Library (RTL)**, and 
 ## 📊 Current Test Status
 
 ```text
-Test Files 9 passed (9)
-Tests      62 passed (62)
+Test Files 10 passed (10)
+Tests      67 passed (67)
 ```
 
 ### Test Breakdown
@@ -235,13 +234,14 @@ Tests      62 passed (62)
 | App | 5 |
 | CodeEditor | 5 |
 | FileUpload | 10 |
+| NavBar | 5 |
 | ReviewPanel | 10 |
 | ReviewFetcher | 1 |
 | SignedInView | 13 |
 | SignedOutView | 5 |
 | useReview Integration | 4 |
 | SignedInView Integration | 9 |
-| **Total** | **62** |
+| **Total** | **67** |
 
 ---
 
@@ -266,22 +266,21 @@ npm run test:coverage
 - Mock Service Worker (MSW)
 - @testing-library/user-event
 - jest-dom
-- jsdom
 
 ---
 
 ### 📌 Current Progress
 
-- ✅ Lessons 1–11 Completed
-- ✅ 62 Automated Unit & Integration Tests
-- ✅ MSW API Integration
-- ✅ Custom Hook Integration Testing
-- 🔄 Next: Component Integration Testing (Lesson 11)
+- ✅ Lessons 1–12 Completed
+- ✅ 67 Automated Unit & Integration Tests
+- ✅ Component & Integration Testing
+- ✅ MSW API Mocking
+- 🔄 Next: `useTheme` Hook Testing (Lesson 13)
   -----------------------
 
 Screenshots : 
 <br/>
-<img width="1002" height="907" alt="image" src="https://github.com/user-attachments/assets/f90575a7-7098-4769-af7d-a7875b101214" />
+<img width="1050" height="811" alt="image" src="https://github.com/user-attachments/assets/8ac71e0a-b3c4-4cd2-a242-124e9b46fff1" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
