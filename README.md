@@ -187,58 +187,45 @@ Measured using **Chrome Lighthouse** with simulated throttling.
 ----
 # 🧪 Testing Progress
 
-The frontend is tested using **Vitest**, **React Testing Library (RTL)**, and **Mock Service Worker (MSW)** following production-oriented testing practices.
+Frontend testing is built with **Vitest**, **React Testing Library (RTL)**, and **Mock Service Worker (MSW)**.
 
 ## ✅ Completed Test Suites
 
-- App component
-- CodeEditor component
-- ReviewPanel component
-- ReviewFetcher component
-- SignedInView component
-- SignedOutView component
+- App
+- CodeEditor
+- FileUpload
+- ReviewPanel
+- ReviewFetcher
+- SignedInView
+- SignedOutView
 - SignedInView Integration
 - App Integration
 - useReview Hook Integration (MSW)
 
 ---
 
-## 🧠 Testing Concepts Covered
+## 🧠 Concepts Covered
 
-- Component rendering
-- User interactions
-- Conditional rendering
-- Component mocking
-- Parent-child integration testing
-- Third-party library mocking (Clerk)
-- Authentication flow testing
-- Prop verification
-- Accessibility queries
+- Component Testing
+- Integration Testing
 - Custom Hook Testing
-- React Hook Integration Testing
-- Full Component Integration Testing
-- App Root Integration Testing
-- Loading state testing
-- Error state testing
-- Cached response testing
-- Validation testing
-- FormData request verification
-- Authorization header testing
-- Multiple request handling
-- API mocking with Mock Service Worker (MSW)
-- Network request interception
-- Asynchronous testing (`act`, `waitFor`, `findBy`)
-- Mock server lifecycle management
-- Smoke testing
-- Re-render testing
+- API Mocking (MSW)
+- Component Mocking
+- Authentication Testing
+- User Interaction Testing
+- Loading & Error States
+- Accessibility Testing
+- File Upload Testing
+- FormData Validation
+- Async Testing
 
 ---
 
 ## 📊 Current Test Status
 
 ```text
-Test Files 8 passed (8)
-Tests      52 passed (52)
+Test Files 9 passed (9)
+Tests      62 passed (62)
 ```
 
 ### Test Breakdown
@@ -247,62 +234,14 @@ Tests      52 passed (52)
 |------------|------:|
 | App | 5 |
 | CodeEditor | 5 |
+| FileUpload | 10 |
 | ReviewPanel | 10 |
 | ReviewFetcher | 1 |
 | SignedInView | 13 |
 | SignedOutView | 5 |
-| useReview Integration (MSW) | 4 |
+| useReview Integration | 4 |
 | SignedInView Integration | 9 |
-| **Total** | **52** |
-
----
-
-## 🚀 Integration Scenarios Covered
-
-### ✅ Successful API Response
-
-- Reviews code successfully
-- Updates review state correctly
-- Displays review content
-
-### ✅ Loading State
-
-- Simulates network latency
-- Verifies loading indicator before response completes
-
-### ✅ Error Handling
-
-- Simulates HTTP 500 responses
-- Displays server error messages
-- Supports dismissing error notifications
-
-### ✅ Cached Response
-
-- Simulates cached API responses
-- Verifies cached badge rendering
-- Ensures fresh responses don't display cache indicators
-
-### ✅ Authentication Flow
-
-- Tests SignedIn rendering
-- Tests SignedOut rendering
-- Verifies Clerk authentication wrappers
-- Ensures only one authenticated view is rendered
-
-### ✅ Request Validation
-
-- Prevents empty code submissions
-- Sends FormData payload
-- Verifies Authorization header
-- Verifies multipart/form-data requests
-
-### ✅ App Integration
-
-- Root component integration testing
-- Parent-child component interaction
-- Conditional rendering
-- Re-render verification
-- Smoke testing
+| **Total** | **62** |
 
 ---
 
@@ -312,7 +251,7 @@ Tests      52 passed (52)
 npm run test
 ```
 
-## 📈 Run Coverage
+## 📈 Coverage
 
 ```bash
 npm run test:coverage
@@ -333,8 +272,8 @@ npm run test:coverage
 
 ### 📌 Current Progress
 
-- ✅ Lessons 1–8 Completed
-- ✅ 37 Automated Unit & Integration Tests
+- ✅ Lessons 1–11 Completed
+- ✅ 62 Automated Unit & Integration Tests
 - ✅ MSW API Integration
 - ✅ Custom Hook Integration Testing
 - 🔄 Next: Component Integration Testing (Lesson 11)
@@ -342,9 +281,7 @@ npm run test:coverage
 
 Screenshots : 
 <br/>
-<img width="1110" height="683" alt="image" src="https://github.com/user-attachments/assets/6e6592c3-a759-46f0-b86d-bdd257f2fda1" />
-
-
+<img width="1002" height="907" alt="image" src="https://github.com/user-attachments/assets/f90575a7-7098-4769-af7d-a7875b101214" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
