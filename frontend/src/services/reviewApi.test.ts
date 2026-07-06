@@ -40,6 +40,20 @@ describe("reviewApi", () => {
         );
     });
 
+    it("calls axios.post exactly once", async () => {
+        mockedAxios.post.mockResolvedValue({
+            data: {},
+        });
+
+        await reviewApi({
+            backendUrl,
+            token,
+            formData,
+        });
+
+        expect(mockedAxios.post).toHaveBeenCalledTimes(1);
+    });
+
     it("sends Authorization header", async () => {
         mockedAxios.post.mockResolvedValue({
             data: {},
@@ -57,6 +71,28 @@ describe("reviewApi", () => {
             expect.objectContaining({
                 headers: expect.objectContaining({
                     Authorization: `Bearer ${token}`,
+                }),
+            })
+        );
+    });
+
+    it("works when token is null", async () => {
+        mockedAxios.post.mockResolvedValue({
+            data: {},
+        });
+
+        await reviewApi({
+            backendUrl,
+            token: null,
+            formData,
+        });
+
+        expect(mockedAxios.post).toHaveBeenCalledWith(
+            expect.any(String),
+            expect.any(FormData),
+            expect.objectContaining({
+                headers: expect.objectContaining({
+                    Authorization: "Bearer null",
                 }),
             })
         );
@@ -84,6 +120,24 @@ describe("reviewApi", () => {
         );
     });
 
+    it("passes the exact FormData instance", async () => {
+        mockedAxios.post.mockResolvedValue({
+            data: {},
+        });
+
+        await reviewApi({
+            backendUrl,
+            token,
+            formData,
+        });
+
+        expect(mockedAxios.post).toHaveBeenCalledWith(
+            expect.any(String),
+            formData,
+            expect.any(Object)
+        );
+    });
+
     it("returns response data", async () => {
         mockedAxios.post.mockResolvedValue({
             data: {
@@ -104,6 +158,20 @@ describe("reviewApi", () => {
         });
     });
 
+    it("returns empty object response", async () => {
+        mockedAxios.post.mockResolvedValue({
+            data: {},
+        });
+
+        const result = await reviewApi({
+            backendUrl,
+            token,
+            formData,
+        });
+
+        expect(result).toEqual({});
+    });
+
     it("throws axios error", async () => {
         mockedAxios.post.mockRejectedValue(
             new Error("Network Error")
@@ -116,5 +184,19 @@ describe("reviewApi", () => {
                 formData,
             })
         ).rejects.toThrow("Network Error");
+    });
+
+    it("propagates server error", async () => {
+        mockedAxios.post.mockRejectedValue(
+            new Error("Internal Server Error")
+        );
+
+        await expect(
+            reviewApi({
+                backendUrl,
+                token,
+                formData,
+            })
+        ).rejects.toThrow("Internal Server Error");
     });
 });
