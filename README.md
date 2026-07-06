@@ -11,6 +11,18 @@ An end-to-end full-stack application that analyzes source code using **Large Lan
 
 ---
 
+---
+
+## 🔗 Live Demo
+
+👉 [https://ai-code-reviewer-frontend-72yc.onrender.com/](https://ai-code-reviewer-frontend-72yc.onrender.com/)
+
+## 📂 Repository
+
+👉 [https://github.com/swarnabha-dutta/AI_Code_Reviewer](https://github.com/swarnabha-dutta/AI_Code_Reviewer)
+
+---
+
 ## 🔥 Key Highlights 
 
 * **LLM-powered automated code review** using Google Gemini
@@ -347,18 +359,7 @@ cd frontend
 npm install
 npm run dev
 ```
-
----
-
-## 🔗 Live Demo
-
-👉 [https://ai-code-reviewer-frontend-72yc.onrender.com/](https://ai-code-reviewer-frontend-72yc.onrender.com/)
-
-## 📂 Repository
-
-👉 [https://github.com/swarnabha-dutta/AI_Code_Reviewer](https://github.com/swarnabha-dutta/AI_Code_Reviewer)
-
----
+----
 
 ## 🧠 Key Learnings
 
