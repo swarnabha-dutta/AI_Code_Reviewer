@@ -1,8 +1,11 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import axios from "axios";
 import SignedInView from "./SignedInView";
+import { fireEvent } from "@testing-library/react";
+
+
 
 vi.mock("axios");
 
@@ -326,5 +329,28 @@ describe("SignedInView Integration", () => {
         ).not.toBeInTheDocument();
     });
 
+    it("allows user to write code and get review", async () => {
+        render(<SignedInView />);
+
+        const editor = screen.getByRole("textbox");
+
+        fireEvent.change(editor, {
+            target: {
+                value: "function sum(a,b){ return a+b; }",
+            },
+        });
+
+        expect(editor).toHaveValue(
+            "function sum(a,b){ return a+b; }"
+        );
+
+        const reviewButton = screen.getByText(/review/i);
+
+        await userEvent.click(reviewButton);
+
+        expect(
+            await screen.findByText(/fresh review/i)
+        ).toBeInTheDocument();
+    });
 
 });
