@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useAuth } from '@clerk/clerk-react';
-import axios from 'axios';
+import { reviewApi } from "../services/reviewApi";
+
+
+
 
 interface ReviewState {
     code: string;
@@ -23,6 +26,7 @@ export function useReview() {
         error: "",
         filesToUpload: [],
     });
+
 
     const setCode = (code: string) => setState(prev => ({ ...prev, code }));
     const setError = (error: string) => setState(prev => ({ ...prev, error }));
@@ -74,16 +78,16 @@ export function useReview() {
 
             const token = await getToken();
 
-            const response = await axios.post(
-                `${Backend_URL}/ai/get-review`,
+            const data = await reviewApi({
+                backendUrl: Backend_URL,
+                token,
                 formData,
-                { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } }
-            );
+            });
 
             setState(prev => ({
                 ...prev,
-                review: response.data.raw ?? "",
-                isCached: response.data.cached === true,
+                review: data.raw ?? "",
+                isCached: data.cached === true,
                 filesToUpload: [],
             }));
 
