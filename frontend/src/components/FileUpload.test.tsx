@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi, describe, it, expect } from "vitest";
 import FileUpload from "./FileUpload";
+import { axe, toHaveNoViolations } from "jest-axe";
+
 
 describe("FileUpload", () => {
     it("renders the upload label when no files are selected", () => {
@@ -146,5 +148,39 @@ describe("FileUpload", () => {
         render(<FileUpload filesToUpload={files} onChange={vi.fn()} />);
 
         expect(screen.getByText("Uploaded 1 file(s)")).toBeInTheDocument();
+    });
+
+
+    it("has no accessibility violations", async () => {
+        expect.extend(toHaveNoViolations);
+
+        const { container } = render(
+            <FileUpload
+                filesToUpload={[]}
+                onChange={vi.fn()}
+            />
+        );
+
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
+    });
+
+    it("provides an accessible file upload control", () => {
+        render(
+            <FileUpload
+                filesToUpload={[]}
+                onChange={vi.fn()}
+            />
+        );
+
+        const input = document.getElementById("file-upload");
+
+        expect(input).toBeInTheDocument();
+        expect(input).toHaveAttribute("type", "file");
+
+        const label = screen.getByText(/upload files/i);
+
+        expect(label).toHaveAttribute("for", "file-upload");
     });
 });

@@ -5,6 +5,9 @@ import { http, HttpResponse } from "msw";
 
 import { server } from "../mocks/server";
 import ReviewContainer from "./ReviewContainer";
+import { axe, toHaveNoViolations } from "jest-axe";
+
+
 
 vi.mock("@clerk/clerk-react", () => ({
     useAuth: () => ({
@@ -113,4 +116,26 @@ describe("ReviewContainer - Real Hook + MSW Integration", () => {
             await screen.findByRole("alert")
         ).toHaveTextContent("Internal Server Error");
     });
+
+    it("keeps the review button accessible", () => {
+        render(<ReviewContainer />);
+
+        expect(
+            screen.getByRole("button", {
+                name: /review code/i,
+            })
+        ).toBeEnabled();
+    });
+
+    it("has no accessibility violations", async () => {
+        expect.extend(toHaveNoViolations);
+
+        const { container } = render(<ReviewContainer />);
+
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
+    });
+
+
 });

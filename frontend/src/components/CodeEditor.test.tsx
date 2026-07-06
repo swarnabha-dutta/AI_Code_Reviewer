@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import CodeEditor from "./CodeEditor";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-
+import { axe, toHaveNoViolations } from "jest-axe";
 
 
 describe("CodeEditor", () => {
@@ -61,7 +61,23 @@ describe("CodeEditor", () => {
         const textarea = screen.getByRole("textbox");
 
         expect(textarea).toHaveAttribute("title", "Code editor");
-    })
+    });
+
+
+    it("has no accessibility violations", async () => {
+        expect.extend(toHaveNoViolations);
+
+        const { container } = render(
+            <CodeEditor
+                code=""
+                onChange={vi.fn()}
+            />
+        );
+
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
+    });
 });
 
 

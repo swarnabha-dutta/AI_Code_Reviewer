@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import NavBar from "./NavBar";
+import { axe, toHaveNoViolations } from "jest-axe";
+
+
+
 
 // Mock Clerk UserButton
 vi.mock("@clerk/clerk-react", () => ({
@@ -46,5 +50,42 @@ describe("NavBar", () => {
         render(<NavBar theme="light" onToggleTheme={vi.fn()} />);
 
         expect(screen.getByTestId("user-button")).toBeInTheDocument();
+    });
+
+
+    it("renders a navigation landmark", () => {
+        render(<NavBar theme="light" onToggleTheme={vi.fn()} />);
+
+        expect(
+            screen.getByRole("navigation", {
+                name: /application navigation/i,
+            })
+        ).toBeInTheDocument();
+    });
+
+
+    it("has an accessible theme toggle button", () => {
+        render(<NavBar theme="light" onToggleTheme={vi.fn()} />);
+
+        expect(
+            screen.getByRole("button", {
+                name: /dark/i,
+            })
+        ).toBeInTheDocument();
+    });
+
+    it("has no accessibility violations", async () => {
+        expect.extend(toHaveNoViolations);
+
+        const { container } = render(
+            <NavBar
+                theme="light"
+                onToggleTheme={vi.fn()}
+            />
+        );
+
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
     });
 });

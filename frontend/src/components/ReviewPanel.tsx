@@ -19,7 +19,7 @@ const ReviewPanel: React.FC<ReviewPanelProps> = ({ review, isLoading, isCached }
     };
 
     return (
-        <div className="right">
+        <div className="right" role='region' aria-label="Code review results">
             {isCached && <span className="cached-badge">⚡ Cached Result</span>}
             {review && (
                 <div className="copy-full-container">
@@ -29,7 +29,10 @@ const ReviewPanel: React.FC<ReviewPanelProps> = ({ review, isLoading, isCached }
                 </div>
             )}
             {isLoading ? (
-                <div className="loading-message">⏳ Finding issues...</div>
+                <div className="loading-message" role="status"
+                    aria-live="polite">
+                    ⏳ Finding issues...
+                </div>
             ) : (
                 <Markdown rehypePlugins={[rehypeHighlight]}>
                     {review}

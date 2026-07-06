@@ -9,7 +9,18 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ theme, onToggleTheme }) => {
     return (
-        <div style={{ position: "absolute", top: "20px", right: "20px", zIndex: 1000, display: "flex", gap: "10px", alignItems: "center" }}>
+        <nav
+            aria-label="Application navigation"
+            style={{
+                position: "absolute",
+                top: "20px",
+                right: "20px",
+                zIndex: 1000,
+                display: "flex",
+                gap: "10px",
+                alignItems: "center",
+            }}
+        >
             <button onClick={onToggleTheme} className="theme-toggle">
                 {theme === "dark" ? "🌞 Light" : "🌙 Dark"}
             </button>
@@ -27,7 +38,7 @@ const NavBar: React.FC<NavBarProps> = ({ theme, onToggleTheme }) => {
                     },
                 }}
             />
-        </div>
+        </nav>
     );
 };
 

@@ -3,6 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import ReviewPanel from "./ReviewPanel";
 import { act } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
+
+
 
 
 beforeEach(() => {
@@ -186,6 +189,52 @@ describe("ReviewPanel", () => {
         ).toBeInTheDocument();
 
         vi.useRealTimers();
-    })
+    });
 
+    it("renders review results region", () => {
+        render(
+            <ReviewPanel
+                review=""
+                isLoading={false}
+                isCached={false}
+            />
+        );
+
+        expect(
+            screen.getByRole("region", {
+                name: /code review results/i,
+            })
+        ).toBeInTheDocument();
+    });
+
+    it("announces loading status accessibly", () => {
+        render(
+            <ReviewPanel
+                review=""
+                isLoading={true}
+                isCached={false}
+            />
+        );
+
+        expect(
+            screen.getByRole("status")
+        ).toHaveTextContent(/finding issues/i);
+    });
+
+
+    it("has no accessibility violations", async () => {
+        expect.extend(toHaveNoViolations);
+
+        const { container } = render(
+            <ReviewPanel
+                review="Hello World"
+                isLoading={false}
+                isCached={false}
+            />
+        );
+
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
+    });
 });

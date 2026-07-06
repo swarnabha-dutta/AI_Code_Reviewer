@@ -25,7 +25,7 @@ const ReviewContainer = () => {
                 onChange={(e) => setCode(e.target.value)}
             />
 
-            <button onClick={handleReview} disabled={isLoading}>
+            <button onClick={handleReview} disabled={isLoading} aria-busy={isLoading}>
                 {isLoading ? "Reviewing..." : "Review Code"}
             </button>
 
