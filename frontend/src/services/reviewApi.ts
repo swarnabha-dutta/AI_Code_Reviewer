@@ -6,13 +6,22 @@ interface ReviewApiParams {
     formData: FormData;
 }
 
+
+interface ReviewApiParams {
+    backendUrl: string;
+    token: string | null;
+    formData: FormData;
+    query?: string;
+}
+
 export async function reviewApi({
     backendUrl,
     token,
     formData,
+    query = "",
 }: ReviewApiParams) {
     const response = await axios.post(
-        `${backendUrl}/ai/get-review`,
+        `${backendUrl}/ai/get-review${query}`,
         formData,
         {
             headers: {
@@ -21,6 +30,5 @@ export async function reviewApi({
             },
         }
     );
-
     return response.data;
 }
