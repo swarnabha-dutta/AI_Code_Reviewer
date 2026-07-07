@@ -324,14 +324,66 @@ Screenshots
 
 ---
 
-### ⚙️ Automated Deployment Flow (Render)
 
-1. Code pushed to GitHub repository
-2. Render automatically detects the new commit
-3. Dependencies installed in isolated build environment
-4. Application build executed (`npm install`, `npm run build`, etc.)
-5. Health checks performed on the new deployment
-6. Traffic seamlessly switched to the new version (zero downtime)
+### ⚙️ Deployment Workflow
+
+1. Developer pushes code to GitHub
+2. Render automatically detects the latest commit
+3. Dependencies are installed in an isolated build environment
+4. Production build is generated
+5. Environment variables are securely injected
+6. Health checks are performed
+7. The latest version is deployed automatically with zero manual intervention
+
+---
+
+### ✅ Deployment Features
+
+- 🚀 Automatic deployment from GitHub
+- 🔄 Consistent cloud build environment
+- 🔐 Secure environment variable management
+- ⚡ Production-ready hosting on Render
+- 📦 Isolated build and deployment pipeline
+- 🌍 Live application available after successful deployment
+
+---
+
+### 🏗 Deployment Stack
+
+| Service | Platform |
+|---------|----------|
+| Frontend | Render |
+| Backend | Render |
+| Source Control | GitHub |
+| Build System | Render Build Pipeline |
+| Environment Variables | Render Secrets |
+| Continuous Deployment | Automatic GitHub Deploy Hooks |
+
+---
+
+### 📌 Deployment Flow
+
+```text
+Developer
+    │
+    ▼
+GitHub Repository
+    │
+    ▼
+Render Auto Deploy
+    │
+    ▼
+Install Dependencies
+    │
+    ▼
+Production Build
+    │
+    ▼
+Health Checks
+    │
+    ▼
+Live Production Application
+```
 
 ---
 
