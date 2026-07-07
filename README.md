@@ -203,6 +203,24 @@ Built with **Vitest**, **React Testing Library**, and **MSW**.
 
 # 🧪 Testing
 
+## 📊 Test Status
+
+```text
+Test Files : 17 passed (17)
+Tests      : 137 passed (137)
+```
+
+## 📈 Test Coverage
+
+| Metric | Coverage |
+|---------|---------:|
+| Statements | **81.10%** |
+| Branches | **81.63%** |
+| Functions | **73.91%** |
+| Lines | **84.54%** |
+
+---
+
 ## ✅ Test Suites
 
 - App
@@ -211,171 +229,48 @@ Built with **Vitest**, **React Testing Library**, and **MSW**.
 - NavBar
 - ReviewPanel
 - ReviewFetcher
-- ReviewContainer Integration (Real Hook + MSW)
+- ReviewContainer (Integration)
 - SignedInView
 - SignedOutView
 - SignedInView Integration
-- useReview Unit
-- useReview Integration (Advanced MSW)
+- useReview (Unit)
+- useReview (Integration + MSW)
 - reviewApi Service
 - useTheme Hook
 
 ---
 
-# 🧪 Testing
+## ✅ Testing Highlights
 
-## 📊 Test Status
-
-```text
-Test Files : 17 passed (17)
-Tests      : 130 passed (130)
-```
-
----
-
-# 📈 Test Coverage
-
-| Metric | Coverage |
-|---------|---------:|
-| Statements | **80.31%** |
-| Branches | **81.63%** |
-| Functions | **71.73%** |
-| Lines | **83.63%** |
-
----
-
-# 🧠 Testing Coverage
-
-## ✅ Component Testing
-
-- CodeEditor
-- FileUpload
-- NavBar
-- ReviewPanel
-- ReviewFetcher
-- ReviewContainer
-- SignedInView
-- SignedOutView
-- App
-
----
-
-## ✅ Accessibility Testing (WCAG)
-
-- Semantic HTML Validation
-- Navigation Landmark Testing
-- Form Label Accessibility
-- Accessible Name Verification
-- ARIA Region Testing
-- ARIA Status Announcements
-- aria-live Validation
-- aria-busy Validation
-- Automated Accessibility Audits
-- jest-axe Integration
-- WCAG Accessibility Verification
-
----
-
-## ✅ React Hook Testing
-
-- useReview (Unit)
-- useReview (Real Hook + MSW)
-- useTheme
-
----
-
-## ✅ API & Integration Testing
-
-- reviewApi Service
-- ReviewContainer (Real Hook + MSW)
-- SignedInView Integration
-- Review Fetch Flow
-
----
-
-## ✅ Advanced MSW Testing
-
-- Request Header Assertions
-- Authorization Header Verification
-- FormData Assertions
-- Multipart FormData Validation
-- Request Body Verification
-- Query Parameter Assertions
-- Delayed Response Simulation
-- Network Error Simulation
-- Cached Response Testing
-- Real API Integration Flow
-
----
-
-## ✅ HTTP Response Testing
-
-- 200 OK
-- 201 Created
-- 400 Bad Request
-- 401 Unauthorized
-- 403 Forbidden
-- 404 Not Found
-- 429 Too Many Requests
-
----
-
-## ✅ Advanced Mocking (Vitest)
-
-- vi.spyOn()
-- mockResolvedValue()
-- mockResolvedValueOnce()
-- mockRejectedValueOnce()
-- mockImplementationOnce()
-- Sequential Mock Responses
-- clearAllMocks()
-- resetAllMocks()
-- restoreAllMocks()
-- toHaveBeenNthCalledWith()
-- toHaveBeenLastCalledWith()
-
----
-
-## ✅ Custom Hook Testing
-
-### useTheme
-
-- Default Theme
-- localStorage Initialization
-- Theme Toggle
-- Multiple Toggles
-- DOM Synchronization
-- localStorage Synchronization
-- Persistent Theme State
-- Edge Case Testing
-
----
-
-## ✅ User Experience Testing
-
-- Loading State
-- Error Handling
-- Cached Response
-- User Interaction
+- Component Testing
+- Integration Testing
+- React Hook Testing
+- API Service Testing
+- MSW (Mock Service Worker)
+- Accessibility Testing (jest-axe)
+- Advanced Async Testing
+- Advanced Mocking (Vitest)
 - Authentication Mocking (Clerk)
-- MSW Network Mocking
-- Accessibility Validation
+- HTTP Response Testing (200, 201, 400, 401, 403, 404, 429)
+- Request Header & FormData Assertions
+- Network Error & Delayed Response Testing
+- Loading, Retry & Error Recovery Testing
 
 ---
 
-# 🛠 Testing Stack
+## 🛠 Tech Stack
 
 - Vitest
 - React Testing Library
-- @testing-library/user-event
-- @testing-library/jest-dom
-- Mock Service Worker (MSW)
+- user-event
+- jest-dom
+- MSW
 - jest-axe
 - axe-core
 
 ---
 
-# ▶️ Run Tests
+## ▶️ Run Tests
 
 ```bash
 npm test
@@ -386,7 +281,6 @@ npm test
 ```bash
 npm run test:watch
 ```
-
 ### Coverage
 
 ```bash
@@ -422,7 +316,7 @@ Screenshots
 - Test Suite (119 Passing Tests)
 - Coverage Report
 <br/>
-<img width="857" height="923" alt="image" src="https://github.com/user-attachments/assets/19228c88-6f5e-4ba4-963b-2ac13e662298" />
+<img width="1361" height="1132" alt="image" src="https://github.com/user-attachments/assets/c2d60004-7aba-4981-bf24-76c337bf1e50" />
 
 ----
 ## 🔁 CI/CD Pipeline (Render)
