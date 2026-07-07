@@ -418,4 +418,104 @@ describe("useReview Integration (MSW)", () => {
         expect(result.current.review).toBe("Delayed Review");
         expect(result.current.isLoading).toBe(false);
     });
+    it("clears the previous review immediately when starting a new request", async () => {
+        server.use(
+            http.post(`${import.meta.env.VITE_API_URL}/ai/get-review`, async () => {
+                await delay(500);
+
+                return HttpResponse.json({
+                    raw: "Fresh Review",
+                    cached: false,
+                });
+            })
+        );
+
+        const { result } = renderHook(() => useReview());
+
+        act(() => {
+            result.current.setCode("first");
+        });
+
+        await act(async () => {
+            await result.current.reviewCode();
+        });
+
+        expect(result.current.review).toBe("Fresh Review");
+
+        act(() => {
+            result.current.setCode("second");
+        });
+
+        let promise: Promise<void>;
+
+        act(() => {
+            promise = result.current.reviewCode();
+        });
+
+        await waitFor(() => {
+            expect(result.current.review).toBe("");
+            expect(result.current.isLoading).toBe(true);
+        });
+
+        await act(async () => {
+            await promise;
+        });
+
+        expect(result.current.review).toBe("Fresh Review");
+        expect(result.current.isLoading).toBe(false);
+    });
+
+    it("clears the previous error before retrying", async () => {
+        let attempt = 0;
+
+        server.use(
+            http.post(`${import.meta.env.VITE_API_URL}/ai/get-review`, async () => {
+                attempt++;
+
+                if (attempt === 1) {
+                    return HttpResponse.json(
+                        { error: "Server Error" },
+                        { status: 500 }
+                    );
+                }
+
+                await delay(300);
+
+                return HttpResponse.json({
+                    raw: "Recovered",
+                    cached: false,
+                });
+            })
+        );
+
+        const { result } = renderHook(() => useReview());
+
+        act(() => {
+            result.current.setCode("retry");
+        });
+
+        await act(async () => {
+            await result.current.reviewCode();
+        });
+
+        expect(result.current.error).toBe("Server Error");
+
+        let promise: Promise<void>;
+
+        act(() => {
+            promise = result.current.reviewCode();
+        });
+
+        await waitFor(() => {
+            expect(result.current.error).toBe("");
+            expect(result.current.isLoading).toBe(true);
+        });
+
+        await act(async () => {
+            await promise;
+        });
+
+        expect(result.current.review).toBe("Recovered");
+        expect(result.current.error).toBe("");
+    });
 });
